@@ -1,14 +1,20 @@
 
-# Contributing
+# Secure Workstation configuration and policy baselines for Microsoft Intune and Windows RS5 
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+Supporting document - https://aka.ms/securedworkstation
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This site is a companion to the Secured Workstation providing the baseline for the 5 sceanrio levels outlined in document.
+
+These files are provided as samples, and a starting point to consider when you build your secured solution.
+
+# 5 sceanrios
+
+1. Standard  - No baseline provided
+2. Enhanced  - Enhanced Workstation - Windows10 (1809) .ps1
+3. VIP       - Enhanced Workstation - Windows10 (1809) .ps1 With additional enhacement outlined in documentation
+4. DevOps    - https://github.com/pelarsen/IntunePowerShellAutomation/blob/master/DeviceConfiguration_NCSC%20-%20Windows10%20(1803)%20SecurityBaseline.ps1
+5. Secured   - Secure Workstation - Windows10 (1809) SecurityBaseline (90).ps1
+
+
+
