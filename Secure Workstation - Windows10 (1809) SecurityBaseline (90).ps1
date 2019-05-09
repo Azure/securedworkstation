@@ -9,9 +9,9 @@ DeviceConfiguration_NCSC Baseline: https://www.ncsc.gov.uk/guidance/eud-guidance
 .NOTES
     FileName:    Secure Workstation - Windows10 (1809) SecurityBaseline.ps1
     Author:      Per Larsen 
-	Revised:     Frank Simorjay, Nathan Bean (Cadence Preferred)
+	Revised:     Frank Simorjay
     Created:     03-09-2018
-	Revised:     05-01-2019
+	Revised:     05-09-2019
     Product:     EUD Guidance: Windows 10 (1809) with Mobile Device Management
     Version:     1.0 hardended
     
