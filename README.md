@@ -6,7 +6,9 @@ Supporting document - https://aka.ms/securedworkstation
 
 This site is a companion to the Secured Workstation providing the baseline for the 5 sceanrio levels outlined in document.
 
-These files are provided as samples, and a starting point to consider when you build your secured solution.
+These files are provided as samples, and a starting point to consider when you build your secured solution. 
+
+**Note** The scripts have been tested in a EN-US enviroment only, as locality may impact international langugage packs.
 
 # 5 sceanrios
 
