@@ -1,9 +1,10 @@
 <##################################################################################################
 #
 .SYNOPSIS
-This is a script used the DeviceConfiguration_NCSC - Windows10 SecurityBaseline as a starting point for 
-to generate a hardended secure workstation as outlined in in the Microsoft Secured Workstation guidance.
+This is a script steps up the secure workstation enforcement. It moves the Enhanced baseline to full blocking security model
+It is recommended to use the Ehanced baselie, and the 
 DeviceConfiguration_NCSC Baseline: https://www.ncsc.gov.uk/guidance/eud-guidance-windows-10-1803-mobile-device-management 
+prior to enabling this set of controls. THESE CONTROLS ARE EXTREAMLY RESTRICTIVE TO THE HOST.
 
 
 .NOTES
@@ -12,7 +13,6 @@ DeviceConfiguration_NCSC Baseline: https://www.ncsc.gov.uk/guidance/eud-guidance
 	Revised:     Frank Simorjay
     Created:     03-09-2018
 	Revised:     05-09-2019
-    Product:     EUD Guidance: Windows 10 (1809) with Mobile Device Management
     Version:     1.0 hardended
     
 #>
