@@ -400,8 +400,8 @@ $firewall = @"
 {
     "@odata.type":  "#microsoft.graph.windows10EndpointProtectionConfiguration",
     "createdDateTime":  "2019-05-01T22:34:39.5389489Z",
-    "description":  "Enhanced workstation-monitor-endpoint retrictions",
-    "displayName":  "Enhanced workstation-monitor-endpoint retrictions",
+    "description":  "HighSecurity workstation-monitor-endpoint retrictions",
+    "displayName":  "HighSecurity workstation-monitor-endpoint retrictions",
     "version":  1,
     "dmaGuardDeviceEnumerationPolicy":  "deviceDefault",
     "userRightsAccessCredentialManagerAsTrustedCaller":  null,
@@ -690,8 +690,8 @@ $System1 = @"
 {
     "@odata.type":  "#microsoft.graph.windows10GeneralConfiguration",
     "createdDateTime":  "2019-05-01T22:27:57.1588557Z",
-    "description":  "Enhanced-monitor-device restrictions",
-    "displayName":  "Enhanced-monitor-device restrictions",
+    "description":  "HighSecurity-monitor-device restrictions",
+    "displayName":  "HighSecurity-monitor-device restrictions",
     "version":  8,
     "taskManagerBlockEndTask":  false,
     "enableAutomaticRedeployment":  true,
@@ -998,8 +998,8 @@ $Baseline = @"
 
 {
     "@odata.type":  "#microsoft.graph.windows10CompliancePolicy",
-    "description":  "Enhanced workstation Compliance baseline Windows10 (1803)",
-    "displayName":  "Enhanced workstation Compliance baseline Windows10 (1803)",
+    "description":  "HighSecurity workstation Compliance baseline Windows10 (1803)",
+    "displayName":  "HighSecurity workstation Compliance baseline Windows10 (1803)",
     "passwordRequired":  false,
     "passwordBlockSimple":  false,
     "passwordRequiredToUnlockFromIdle":  false,
