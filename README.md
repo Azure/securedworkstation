@@ -10,7 +10,7 @@ These files are provided as samples, and a starting point to consider when you b
 
 **Note** The scripts have been tested in a EN-US enviroment only, as locality may impact international langugage packs.
 
-# 5 sceanrios
+# 6 sceanrios
 
 1. **Low Security** - No baseline provided
 2. **Enhanced Security** - Enhanced Workstation - Windows10 (1809) .ps1
