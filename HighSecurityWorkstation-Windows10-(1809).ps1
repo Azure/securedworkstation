@@ -440,7 +440,7 @@ $firewall = @"
     "xboxServicesLiveNetworkingServiceStartupMode":  "manual",
     "localSecurityOptionsBlockMicrosoftAccounts":  true,
     "localSecurityOptionsBlockRemoteLogonWithBlankPassword":  true,
-    "localSecurityOptionsDisableAdministratorAccount":  True,
+    "localSecurityOptionsDisableAdministratorAccount":  true,
     "localSecurityOptionsAdministratorAccountName":  null,
     "localSecurityOptionsDisableGuestAccount":  true,
     "localSecurityOptionsGuestAccountName":  null,
