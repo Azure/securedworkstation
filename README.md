@@ -20,4 +20,6 @@ These files are provided as samples, and a starting point to consider when you b
 6. **Isolated** - No additional baseline provided
 
 
+# MMA client installer 
 
+The InstallMMAforApplocker.ps1 file will download and install MMA client for monitoring. This is part of the applocker monitoring provided in the Specialized, and Secured workstation sceanrios. The data will be uploaded to Log Analytics.
