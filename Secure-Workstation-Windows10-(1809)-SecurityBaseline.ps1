@@ -13,7 +13,7 @@ prior to enabling this set of controls. THESE CONTROLS ARE EXTREAMLY RESTRICTIVE
 	Revised:     Frank Simorjay
     Created:     03-09-2018
 	Revised:     05-09-2019
-    Version:     1.0 hardended
+    Version:     1.1 hardended
     
 #>
 ###################################################################################################
@@ -457,7 +457,7 @@ $firewall = @"
     "createdDateTime":  "2019-04-30T22:04:19.2180497Z",
     "description":  "Firewall configuration for Secure Workstation",
     "displayName":  "Firewall configuration for Secure Workstation",
-    "version":  2,
+    "version":  3,
     "dmaGuardDeviceEnumerationPolicy":  "deviceDefault",
     "userRightsAccessCredentialManagerAsTrustedCaller":  null,
     "userRightsAllowAccessFromNetwork":  null,
@@ -541,6 +541,29 @@ $firewall = @"
     "localSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares":  true,
     "localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange":  true,
     "localSecurityOptionsSmartCardRemovalBehavior":  "noAction",
+	"defenderDisableScanArchiveFiles":  true,
+    "defenderDisableBehaviorMonitoring":  false,
+    "defenderDisableCloudProtection":  false,
+    "defenderEnableScanIncomingMail":  false,
+    "defenderEnableScanMappedNetworkDrivesDuringFullScan":  false,
+    "defenderDisableScanRemovableDrivesDuringFullScan":  false,
+    "defenderDisableScanDownloads":  false,
+    "defenderDisableIntrusionPreventionSystem":  false,
+    "defenderDisableOnAccessProtection":  false,
+    "defenderDisableRealTimeMonitoring":  false,
+    "defenderDisableScanNetworkFiles":  false,
+    "defenderDisableScanScriptsLoadedInInternetExplorer":  false,
+    "defenderBlockEndUserAccess":  false,
+    "defenderCheckForSignaturesBeforeRunningScan":  false,
+    "defenderCloudBlockLevel":  "high",
+    "defenderDisableCatchupFullScan":  false,
+    "defenderDisableCatchupQuickScan":  false,
+    "defenderEnableLowCpuPriority":  false,
+    "defenderPotentiallyUnwantedAppAction":  "enable",
+    "defenderScanDirection":  "0",
+    "defenderScanType":  "0",
+    "defenderScheduledScanDay":  "0",
+    "defenderSubmitSamplesConsentType":  "0",
     "defenderSecurityCenterDisableAppBrowserUI":  true,
     "defenderSecurityCenterDisableFamilyUI":  true,
     "defenderSecurityCenterDisableHealthUI":  true,
