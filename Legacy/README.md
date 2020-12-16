@@ -1,5 +1,7 @@
 
-# Secure Workstation configuration and policy baselines for Microsoft Intune and Windows RS5 
+# LEGACY V1 - Secure Workstation configuration and policy baselines for Microsoft Intune and Windows RS5 
+
+**Content of this folder is provided as solution history...**
 
 Supporting document - https://aka.ms/securedworkstation
 

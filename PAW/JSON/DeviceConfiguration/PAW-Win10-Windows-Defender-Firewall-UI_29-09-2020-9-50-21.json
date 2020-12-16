@@ -1,0 +1,972 @@
+{
+    "@odata.type":  "#microsoft.graph.windows10EndpointProtectionConfiguration",
+    "id":  "8de02515-78a7-4f98-9e0e-b5476228d2a3",
+    "lastModifiedDateTime":  "2020-09-29T08:17:15.9268195Z",
+    "roleScopeTagIds":  [
+                            "0"
+                        ],
+    "supportsScopeTags":  true,
+    "deviceManagementApplicabilityRuleOsEdition":  null,
+    "deviceManagementApplicabilityRuleOsVersion":  null,
+    "deviceManagementApplicabilityRuleDeviceMode":  null,
+    "createdDateTime":  "2020-08-24T07:48:54.3302264Z",
+    "description":  "Defender Firewall ruleset - including limited outbound ruleset",
+    "displayName":  "PAW-Win10-Windows-Defender-Firewall-UI",
+    "version":  8,
+    "dmaGuardDeviceEnumerationPolicy":  "deviceDefault",
+    "xboxServicesEnableXboxGameSaveTask":  false,
+    "xboxServicesAccessoryManagementServiceStartupMode":  "manual",
+    "xboxServicesLiveAuthManagerServiceStartupMode":  "manual",
+    "xboxServicesLiveGameSaveServiceStartupMode":  "manual",
+    "xboxServicesLiveNetworkingServiceStartupMode":  "manual",
+    "localSecurityOptionsBlockMicrosoftAccounts":  false,
+    "localSecurityOptionsBlockRemoteLogonWithBlankPassword":  false,
+    "localSecurityOptionsDisableAdministratorAccount":  false,
+    "localSecurityOptionsAdministratorAccountName":  null,
+    "localSecurityOptionsDisableGuestAccount":  false,
+    "localSecurityOptionsGuestAccountName":  null,
+    "localSecurityOptionsAllowUndockWithoutHavingToLogon":  false,
+    "localSecurityOptionsBlockUsersInstallingPrinterDrivers":  false,
+    "localSecurityOptionsBlockRemoteOpticalDriveAccess":  false,
+    "localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser":  "notConfigured",
+    "localSecurityOptionsMachineInactivityLimit":  null,
+    "localSecurityOptionsMachineInactivityLimitInMinutes":  null,
+    "localSecurityOptionsDoNotRequireCtrlAltDel":  false,
+    "localSecurityOptionsHideLastSignedInUser":  false,
+    "localSecurityOptionsHideUsernameAtSignIn":  false,
+    "localSecurityOptionsLogOnMessageTitle":  null,
+    "localSecurityOptionsLogOnMessageText":  null,
+    "localSecurityOptionsAllowPKU2UAuthenticationRequests":  false,
+    "localSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool":  false,
+    "localSecurityOptionsAllowRemoteCallsToSecurityAccountsManager":  null,
+    "localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedClients":  "none",
+    "localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers":  "none",
+    "lanManagerAuthenticationLevel":  "lmAndNltm",
+    "lanManagerWorkstationDisableInsecureGuestLogons":  false,
+    "localSecurityOptionsClearVirtualMemoryPageFile":  false,
+    "localSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn":  false,
+    "localSecurityOptionsAllowUIAccessApplicationElevation":  false,
+    "localSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations":  false,
+    "localSecurityOptionsOnlyElevateSignedExecutables":  false,
+    "localSecurityOptionsAdministratorElevationPromptBehavior":  "notConfigured",
+    "localSecurityOptionsStandardUserElevationPromptBehavior":  "notConfigured",
+    "localSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation":  false,
+    "localSecurityOptionsDetectApplicationInstallationsAndPromptForElevation":  false,
+    "localSecurityOptionsAllowUIAccessApplicationsForSecureLocations":  false,
+    "localSecurityOptionsUseAdminApprovalMode":  false,
+    "localSecurityOptionsUseAdminApprovalModeForAdministrators":  false,
+    "localSecurityOptionsInformationShownOnLockScreen":  "notConfigured",
+    "localSecurityOptionsInformationDisplayedOnLockScreen":  "notConfigured",
+    "localSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees":  false,
+    "localSecurityOptionsClientDigitallySignCommunicationsAlways":  false,
+    "localSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers":  false,
+    "localSecurityOptionsDisableServerDigitallySignCommunicationsAlways":  false,
+    "localSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees":  false,
+    "localSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares":  false,
+    "localSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts":  false,
+    "localSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares":  false,
+    "localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange":  false,
+    "localSecurityOptionsSmartCardRemovalBehavior":  "lockWorkstation",
+    "defenderSecurityCenterDisableAppBrowserUI":  false,
+    "defenderSecurityCenterDisableFamilyUI":  false,
+    "defenderSecurityCenterDisableHealthUI":  false,
+    "defenderSecurityCenterDisableNetworkUI":  false,
+    "defenderSecurityCenterDisableVirusUI":  false,
+    "defenderSecurityCenterDisableAccountUI":  false,
+    "defenderSecurityCenterDisableClearTpmUI":  false,
+    "defenderSecurityCenterDisableHardwareUI":  false,
+    "defenderSecurityCenterDisableNotificationAreaUI":  false,
+    "defenderSecurityCenterDisableRansomwareUI":  false,
+    "defenderSecurityCenterDisableSecureBootUI":  false,
+    "defenderSecurityCenterDisableTroubleshootingUI":  false,
+    "defenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI":  false,
+    "defenderSecurityCenterOrganizationDisplayName":  null,
+    "defenderSecurityCenterHelpEmail":  null,
+    "defenderSecurityCenterHelpPhone":  null,
+    "defenderSecurityCenterHelpURL":  null,
+    "defenderSecurityCenterNotificationsFromApp":  "notConfigured",
+    "defenderSecurityCenterITContactDisplay":  "notConfigured",
+    "windowsDefenderTamperProtection":  "notConfigured",
+    "firewallBlockStatefulFTP":  true,
+    "firewallIdleTimeoutForSecurityAssociationInSeconds":  null,
+    "firewallPreSharedKeyEncodingMethod":  "deviceDefault",
+    "firewallIPSecExemptionsNone":  false,
+    "firewallIPSecExemptionsAllowNeighborDiscovery":  false,
+    "firewallIPSecExemptionsAllowICMP":  false,
+    "firewallIPSecExemptionsAllowRouterDiscovery":  false,
+    "firewallIPSecExemptionsAllowDHCP":  false,
+    "firewallCertificateRevocationListCheckMethod":  "deviceDefault",
+    "firewallMergeKeyingModuleSettings":  null,
+    "firewallPacketQueueingMethod":  "deviceDefault",
+    "defenderAdobeReaderLaunchChildProcess":  "userDefined",
+    "defenderAttackSurfaceReductionExcludedPaths":  [
+
+                                                    ],
+    "defenderOfficeAppsOtherProcessInjectionType":  "userDefined",
+    "defenderOfficeAppsOtherProcessInjection":  "userDefined",
+    "defenderOfficeCommunicationAppsLaunchChildProcess":  "userDefined",
+    "defenderOfficeAppsExecutableContentCreationOrLaunchType":  "userDefined",
+    "defenderOfficeAppsExecutableContentCreationOrLaunch":  "userDefined",
+    "defenderOfficeAppsLaunchChildProcessType":  "userDefined",
+    "defenderOfficeAppsLaunchChildProcess":  "userDefined",
+    "defenderOfficeMacroCodeAllowWin32ImportsType":  "userDefined",
+    "defenderOfficeMacroCodeAllowWin32Imports":  "userDefined",
+    "defenderScriptObfuscatedMacroCodeType":  "userDefined",
+    "defenderScriptObfuscatedMacroCode":  "userDefined",
+    "defenderScriptDownloadedPayloadExecutionType":  "userDefined",
+    "defenderScriptDownloadedPayloadExecution":  "userDefined",
+    "defenderPreventCredentialStealingType":  "userDefined",
+    "defenderProcessCreationType":  "userDefined",
+    "defenderProcessCreation":  "userDefined",
+    "defenderUntrustedUSBProcessType":  "userDefined",
+    "defenderUntrustedUSBProcess":  "userDefined",
+    "defenderUntrustedExecutableType":  "userDefined",
+    "defenderUntrustedExecutable":  "userDefined",
+    "defenderEmailContentExecutionType":  "userDefined",
+    "defenderEmailContentExecution":  "userDefined",
+    "defenderAdvancedRansomewareProtectionType":  "userDefined",
+    "defenderGuardMyFoldersType":  "userDefined",
+    "defenderGuardedFoldersAllowedAppPaths":  [
+
+                                              ],
+    "defenderAdditionalGuardedFolders":  [
+
+                                         ],
+    "defenderNetworkProtectionType":  "userDefined",
+    "defenderExploitProtectionXml":  null,
+    "defenderExploitProtectionXmlFileName":  null,
+    "defenderSecurityCenterBlockExploitProtectionOverride":  false,
+    "appLockerApplicationControl":  "notConfigured",
+    "deviceGuardLocalSystemAuthorityCredentialGuardSettings":  "notConfigured",
+    "deviceGuardEnableVirtualizationBasedSecurity":  false,
+    "deviceGuardEnableSecureBootWithDMA":  false,
+    "deviceGuardSecureBootWithDMA":  "notConfigured",
+    "deviceGuardLaunchSystemGuard":  "notConfigured",
+    "smartScreenEnableInShell":  false,
+    "smartScreenBlockOverrideForFiles":  false,
+    "applicationGuardEnabled":  false,
+    "applicationGuardEnabledOptions":  "notConfigured",
+    "applicationGuardBlockFileTransfer":  "notConfigured",
+    "applicationGuardBlockNonEnterpriseContent":  false,
+    "applicationGuardAllowPersistence":  false,
+    "applicationGuardForceAuditing":  false,
+    "applicationGuardBlockClipboardSharing":  "notConfigured",
+    "applicationGuardAllowPrintToPDF":  false,
+    "applicationGuardAllowPrintToXPS":  false,
+    "applicationGuardAllowPrintToLocalPrinters":  false,
+    "applicationGuardAllowPrintToNetworkPrinters":  false,
+    "applicationGuardAllowVirtualGPU":  false,
+    "applicationGuardAllowFileSaveOnHost":  false,
+    "bitLockerAllowStandardUserEncryption":  false,
+    "bitLockerDisableWarningForOtherDiskEncryption":  false,
+    "bitLockerEnableStorageCardEncryptionOnMobile":  false,
+    "bitLockerEncryptDevice":  false,
+    "bitLockerRecoveryPasswordRotation":  "notConfigured",
+    "defenderDisableScanArchiveFiles":  null,
+    "defenderAllowScanArchiveFiles":  null,
+    "defenderDisableBehaviorMonitoring":  null,
+    "defenderAllowBehaviorMonitoring":  null,
+    "defenderDisableCloudProtection":  null,
+    "defenderAllowCloudProtection":  null,
+    "defenderEnableScanIncomingMail":  null,
+    "defenderEnableScanMappedNetworkDrivesDuringFullScan":  null,
+    "defenderDisableScanRemovableDrivesDuringFullScan":  null,
+    "defenderAllowScanRemovableDrivesDuringFullScan":  null,
+    "defenderDisableScanDownloads":  null,
+    "defenderAllowScanDownloads":  null,
+    "defenderDisableIntrusionPreventionSystem":  null,
+    "defenderAllowIntrusionPreventionSystem":  null,
+    "defenderDisableOnAccessProtection":  null,
+    "defenderAllowOnAccessProtection":  null,
+    "defenderDisableRealTimeMonitoring":  null,
+    "defenderAllowRealTimeMonitoring":  null,
+    "defenderDisableScanNetworkFiles":  null,
+    "defenderAllowScanNetworkFiles":  null,
+    "defenderDisableScanScriptsLoadedInInternetExplorer":  null,
+    "defenderAllowScanScriptsLoadedInInternetExplorer":  null,
+    "defenderBlockEndUserAccess":  null,
+    "defenderAllowEndUserAccess":  null,
+    "defenderScanMaxCpuPercentage":  null,
+    "defenderCheckForSignaturesBeforeRunningScan":  null,
+    "defenderCloudBlockLevel":  null,
+    "defenderCloudExtendedTimeoutInSeconds":  null,
+    "defenderDaysBeforeDeletingQuarantinedMalware":  null,
+    "defenderDisableCatchupFullScan":  null,
+    "defenderDisableCatchupQuickScan":  null,
+    "defenderEnableLowCpuPriority":  null,
+    "defenderFileExtensionsToExclude":  [
+
+                                        ],
+    "defenderFilesAndFoldersToExclude":  [
+
+                                         ],
+    "defenderProcessesToExclude":  [
+
+                                   ],
+    "defenderPotentiallyUnwantedAppAction":  null,
+    "defenderScanDirection":  null,
+    "defenderScanType":  null,
+    "defenderScheduledQuickScanTime":  null,
+    "defenderScheduledScanDay":  null,
+    "defenderScheduledScanTime":  null,
+    "defenderSignatureUpdateIntervalInHours":  null,
+    "defenderSubmitSamplesConsentType":  null,
+    "defenderDetectedMalwareActions":  null,
+    "firewallRules":  [
+                          {
+                              "displayName":  "World Wide Web Services (HTTPS Traffic-out)",
+                              "description":  "An outbound rule to allow HTTPS traffic for Internet traffic",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  null,
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "443"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "public",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "World Wide Web Services (HTTP Traffic-out)",
+                              "description":  "An outbound rule to allow HTTPS traffic for Internet traffic",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  null,
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "80"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "public",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - Dynamic Host Configuration Protocol for IPv6(DHCPV6-Out)",
+                              "description":  "Allows DHCPV6 (Dynamic Host Configuration Protocol for IPv6) messages for stateful and stateless configuration.",
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "546"
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "547"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - Dynamic Host Configuration Protocol for IPv6(DHCPV6-Out)",
+                              "description":  "Allows DHCPV6 (Dynamic Host Configuration Protocol for IPv6) messages for stateful and stateless configuration.",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "Dhcp",
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "546"
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "547"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - Dynamic Host Configuration Protocol (DHCP-Out)",
+                              "description":  "Allows DHCP (Dynamic Host Configuration Protocol) messages for stateful auto-configuration.",
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "68"
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "67"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - Dynamic Host Configuration Protocol (DHCP-Out)",
+                              "description":  "Allows DHCP (Dynamic Host Configuration Protocol) messages for stateful auto-configuration.",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "Dhcp",
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "68"
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "67"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - DNS (UDP-Out)",
+                              "description":  "An outbound rule to allow DNS traffic for name resolution",
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  17,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "53"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - DNS (UDP-Out)",
+                              "description":  "An outbound rule to allow DNS traffic for name resolution",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "Dnscache",
+                              "protocol":  17,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "53"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "NCSI Probe (HTTP-Out)",
+                              "description":  "NCSI Probe for network type determination",
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "80"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "NCSI Probe (HTTP-Out)",
+                              "description":  "NCSI Probe for network type determination",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "NlaSvc",
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "80"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Windows Time (UDP-Out)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  17,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "123"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Windows Time (UDP-Out)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "W32Time",
+                              "protocol":  17,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "123"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Delivery Optimization (TCP-In)",
+                              "description":  "Inbound rule to allow Delivery Optimization to connect to remote endpoints",
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  6,
+                              "localPortRanges":  [
+                                                      "7680"
+                                                  ],
+                              "remotePortRanges":  [
+
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "in",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Delivery Optimization (TCP-In)",
+                              "description":  "Inbound rule to allow Delivery Optimization to connect to remote endpoints",
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "DoSvc",
+                              "protocol":  6,
+                              "localPortRanges":  [
+                                                      "7680"
+                                                  ],
+                              "remotePortRanges":  [
+
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "in",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - DNS (TCP-Out)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "53"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Core Networking - DNS (TCP-Out)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "DNSCache",
+                              "protocol":  6,
+                              "localPortRanges":  [
+
+                                                  ],
+                              "remotePortRanges":  [
+                                                       "53"
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "out",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Delivery Optimization (UDP-In)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  "%SystemRoot%\\system32\\svchost.exe",
+                              "serviceName":  null,
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "7680"
+                                                  ],
+                              "remotePortRanges":  [
+
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "in",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          },
+                          {
+                              "displayName":  "Delivery Optimization (UDP-In)",
+                              "description":  null,
+                              "packageFamilyName":  null,
+                              "filePath":  null,
+                              "serviceName":  "DoSvc",
+                              "protocol":  17,
+                              "localPortRanges":  [
+                                                      "7680"
+                                                  ],
+                              "remotePortRanges":  [
+
+                                                   ],
+                              "localAddressRanges":  [
+
+                                                     ],
+                              "remoteAddressRanges":  [
+
+                                                      ],
+                              "profileTypes":  "notConfigured",
+                              "action":  "allowed",
+                              "trafficDirection":  "in",
+                              "interfaceTypes":  "notConfigured",
+                              "edgeTraversal":  "notConfigured",
+                              "localUserAuthorizations":  null
+                          }
+                      ],
+    "userRightsAccessCredentialManagerAsTrustedCaller":  {
+                                                             "state":  "notConfigured",
+                                                             "localUsersOrGroups":  [
+
+                                                                                    ]
+                                                         },
+    "userRightsAllowAccessFromNetwork":  {
+                                             "state":  "notConfigured",
+                                             "localUsersOrGroups":  [
+
+                                                                    ]
+                                         },
+    "userRightsBlockAccessFromNetwork":  {
+                                             "state":  "notConfigured",
+                                             "localUsersOrGroups":  [
+
+                                                                    ]
+                                         },
+    "userRightsActAsPartOfTheOperatingSystem":  {
+                                                    "state":  "notConfigured",
+                                                    "localUsersOrGroups":  [
+
+                                                                           ]
+                                                },
+    "userRightsLocalLogOn":  {
+                                 "state":  "notConfigured",
+                                 "localUsersOrGroups":  [
+
+                                                        ]
+                             },
+    "userRightsDenyLocalLogOn":  {
+                                     "state":  "notConfigured",
+                                     "localUsersOrGroups":  [
+
+                                                            ]
+                                 },
+    "userRightsBackupData":  {
+                                 "state":  "notConfigured",
+                                 "localUsersOrGroups":  [
+
+                                                        ]
+                             },
+    "userRightsChangeSystemTime":  {
+                                       "state":  "notConfigured",
+                                       "localUsersOrGroups":  [
+
+                                                              ]
+                                   },
+    "userRightsCreateGlobalObjects":  {
+                                          "state":  "notConfigured",
+                                          "localUsersOrGroups":  [
+
+                                                                 ]
+                                      },
+    "userRightsCreatePageFile":  {
+                                     "state":  "notConfigured",
+                                     "localUsersOrGroups":  [
+
+                                                            ]
+                                 },
+    "userRightsCreatePermanentSharedObjects":  {
+                                                   "state":  "notConfigured",
+                                                   "localUsersOrGroups":  [
+
+                                                                          ]
+                                               },
+    "userRightsCreateSymbolicLinks":  {
+                                          "state":  "notConfigured",
+                                          "localUsersOrGroups":  [
+
+                                                                 ]
+                                      },
+    "userRightsCreateToken":  {
+                                  "state":  "notConfigured",
+                                  "localUsersOrGroups":  [
+
+                                                         ]
+                              },
+    "userRightsDebugPrograms":  {
+                                    "state":  "notConfigured",
+                                    "localUsersOrGroups":  [
+
+                                                           ]
+                                },
+    "userRightsRemoteDesktopServicesLogOn":  {
+                                                 "state":  "notConfigured",
+                                                 "localUsersOrGroups":  [
+
+                                                                        ]
+                                             },
+    "userRightsDelegation":  {
+                                 "state":  "notConfigured",
+                                 "localUsersOrGroups":  [
+
+                                                        ]
+                             },
+    "userRightsGenerateSecurityAudits":  {
+                                             "state":  "notConfigured",
+                                             "localUsersOrGroups":  [
+
+                                                                    ]
+                                         },
+    "userRightsImpersonateClient":  {
+                                        "state":  "notConfigured",
+                                        "localUsersOrGroups":  [
+
+                                                               ]
+                                    },
+    "userRightsIncreaseSchedulingPriority":  {
+                                                 "state":  "notConfigured",
+                                                 "localUsersOrGroups":  [
+
+                                                                        ]
+                                             },
+    "userRightsLoadUnloadDrivers":  {
+                                        "state":  "notConfigured",
+                                        "localUsersOrGroups":  [
+
+                                                               ]
+                                    },
+    "userRightsLockMemory":  {
+                                 "state":  "notConfigured",
+                                 "localUsersOrGroups":  [
+
+                                                        ]
+                             },
+    "userRightsManageAuditingAndSecurityLogs":  {
+                                                    "state":  "notConfigured",
+                                                    "localUsersOrGroups":  [
+
+                                                                           ]
+                                                },
+    "userRightsManageVolumes":  {
+                                    "state":  "notConfigured",
+                                    "localUsersOrGroups":  [
+
+                                                           ]
+                                },
+    "userRightsModifyFirmwareEnvironment":  {
+                                                "state":  "notConfigured",
+                                                "localUsersOrGroups":  [
+
+                                                                       ]
+                                            },
+    "userRightsModifyObjectLabels":  {
+                                         "state":  "notConfigured",
+                                         "localUsersOrGroups":  [
+
+                                                                ]
+                                     },
+    "userRightsProfileSingleProcess":  {
+                                           "state":  "notConfigured",
+                                           "localUsersOrGroups":  [
+
+                                                                  ]
+                                       },
+    "userRightsRemoteShutdown":  {
+                                     "state":  "notConfigured",
+                                     "localUsersOrGroups":  [
+
+                                                            ]
+                                 },
+    "userRightsRestoreData":  {
+                                  "state":  "notConfigured",
+                                  "localUsersOrGroups":  [
+
+                                                         ]
+                              },
+    "userRightsTakeOwnership":  {
+                                    "state":  "notConfigured",
+                                    "localUsersOrGroups":  [
+
+                                                           ]
+                                },
+    "firewallProfileDomain":  {
+                                  "firewallEnabled":  "allowed",
+                                  "stealthModeRequired":  false,
+                                  "stealthModeBlocked":  false,
+                                  "incomingTrafficRequired":  false,
+                                  "incomingTrafficBlocked":  false,
+                                  "unicastResponsesToMulticastBroadcastsRequired":  false,
+                                  "unicastResponsesToMulticastBroadcastsBlocked":  false,
+                                  "inboundNotificationsRequired":  false,
+                                  "inboundNotificationsBlocked":  true,
+                                  "authorizedApplicationRulesFromGroupPolicyMerged":  false,
+                                  "authorizedApplicationRulesFromGroupPolicyNotMerged":  true,
+                                  "globalPortRulesFromGroupPolicyMerged":  false,
+                                  "globalPortRulesFromGroupPolicyNotMerged":  true,
+                                  "connectionSecurityRulesFromGroupPolicyMerged":  false,
+                                  "connectionSecurityRulesFromGroupPolicyNotMerged":  true,
+                                  "outboundConnectionsRequired":  true,
+                                  "outboundConnectionsBlocked":  false,
+                                  "inboundConnectionsRequired":  false,
+                                  "inboundConnectionsBlocked":  true,
+                                  "securedPacketExemptionAllowed":  false,
+                                  "securedPacketExemptionBlocked":  false,
+                                  "policyRulesFromGroupPolicyMerged":  false,
+                                  "policyRulesFromGroupPolicyNotMerged":  true
+                              },
+    "firewallProfilePublic":  {
+                                  "firewallEnabled":  "allowed",
+                                  "stealthModeRequired":  false,
+                                  "stealthModeBlocked":  false,
+                                  "incomingTrafficRequired":  false,
+                                  "incomingTrafficBlocked":  false,
+                                  "unicastResponsesToMulticastBroadcastsRequired":  false,
+                                  "unicastResponsesToMulticastBroadcastsBlocked":  false,
+                                  "inboundNotificationsRequired":  false,
+                                  "inboundNotificationsBlocked":  true,
+                                  "authorizedApplicationRulesFromGroupPolicyMerged":  false,
+                                  "authorizedApplicationRulesFromGroupPolicyNotMerged":  true,
+                                  "globalPortRulesFromGroupPolicyMerged":  false,
+                                  "globalPortRulesFromGroupPolicyNotMerged":  true,
+                                  "connectionSecurityRulesFromGroupPolicyMerged":  false,
+                                  "connectionSecurityRulesFromGroupPolicyNotMerged":  true,
+                                  "outboundConnectionsRequired":  false,
+                                  "outboundConnectionsBlocked":  true,
+                                  "inboundConnectionsRequired":  false,
+                                  "inboundConnectionsBlocked":  true,
+                                  "securedPacketExemptionAllowed":  false,
+                                  "securedPacketExemptionBlocked":  false,
+                                  "policyRulesFromGroupPolicyMerged":  false,
+                                  "policyRulesFromGroupPolicyNotMerged":  true
+                              },
+    "firewallProfilePrivate":  {
+                                   "firewallEnabled":  "allowed",
+                                   "stealthModeRequired":  false,
+                                   "stealthModeBlocked":  false,
+                                   "incomingTrafficRequired":  false,
+                                   "incomingTrafficBlocked":  false,
+                                   "unicastResponsesToMulticastBroadcastsRequired":  false,
+                                   "unicastResponsesToMulticastBroadcastsBlocked":  false,
+                                   "inboundNotificationsRequired":  false,
+                                   "inboundNotificationsBlocked":  true,
+                                   "authorizedApplicationRulesFromGroupPolicyMerged":  false,
+                                   "authorizedApplicationRulesFromGroupPolicyNotMerged":  true,
+                                   "globalPortRulesFromGroupPolicyMerged":  false,
+                                   "globalPortRulesFromGroupPolicyNotMerged":  true,
+                                   "connectionSecurityRulesFromGroupPolicyMerged":  false,
+                                   "connectionSecurityRulesFromGroupPolicyNotMerged":  true,
+                                   "outboundConnectionsRequired":  false,
+                                   "outboundConnectionsBlocked":  true,
+                                   "inboundConnectionsRequired":  false,
+                                   "inboundConnectionsBlocked":  true,
+                                   "securedPacketExemptionAllowed":  false,
+                                   "securedPacketExemptionBlocked":  false,
+                                   "policyRulesFromGroupPolicyMerged":  false,
+                                   "policyRulesFromGroupPolicyNotMerged":  true
+                               },
+    "bitLockerSystemDrivePolicy":  {
+                                       "encryptionMethod":  null,
+                                       "startupAuthenticationRequired":  false,
+                                       "startupAuthenticationBlockWithoutTpmChip":  false,
+                                       "startupAuthenticationTpmUsage":  "blocked",
+                                       "startupAuthenticationTpmPinUsage":  "blocked",
+                                       "startupAuthenticationTpmKeyUsage":  "blocked",
+                                       "startupAuthenticationTpmPinAndKeyUsage":  "blocked",
+                                       "minimumPinLength":  null,
+                                       "recoveryOptions":  null,
+                                       "prebootRecoveryEnableMessageAndUrl":  false,
+                                       "prebootRecoveryMessage":  null,
+                                       "prebootRecoveryUrl":  null
+                                   },
+    "bitLockerFixedDrivePolicy":  {
+                                      "encryptionMethod":  null,
+                                      "requireEncryptionForWriteAccess":  false,
+                                      "recoveryOptions":  null
+                                  },
+    "bitLockerRemovableDrivePolicy":  {
+                                          "encryptionMethod":  null,
+                                          "requireEncryptionForWriteAccess":  false,
+                                          "blockCrossOrganizationWriteAccess":  false
+                                      },
+    "assignments@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceConfigurations(\u00279218cdda-e28d-451e-96c6-1e6b9a9f292d\u0027)/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/assignments",
+    "assignments":  [
+                        {
+                            "id":  "9218cdda-e28d-451e-96c6-1e6b9a9f292d_bd1f65b9-891f-40ed-89c2-22433a98ea02",
+                            "source":  "direct",
+                            "sourceId":  "9218cdda-e28d-451e-96c6-1e6b9a9f292d",
+                            "target":  {
+                                            "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
+                                            "deviceAndAppManagementAssignmentFilterId":  null,
+                                            "deviceAndAppManagementAssignmentFilterType":  "none",
+                                            "groupId":  "Privileged Workstations"
+                        }
+                        }
+                    ]
+}

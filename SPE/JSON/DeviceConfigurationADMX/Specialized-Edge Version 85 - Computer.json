@@ -1,0 +1,83 @@
+[
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('06b9c400-f1ed-4046-b8cb-02af3ae8e38d')",
+    "enabled":  "true"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('75c20a0b-f76e-4131-892a-1f47dd6534e4')",
+    "enabled":  "true",
+    "presentationValues":  [
+                               {
+                                   "@odata.type":  "#microsoft.graph.groupPolicyPresentationValueText",
+                                   "value":  "2",
+                                   "presentation@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('75c20a0b-f76e-4131-892a-1f47dd6534e4')/presentations('6f605b7e-ca35-4f6a-b616-0cf85f5e9580')"
+                               }
+                           ]
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('59922037-5107-4eaf-a72f-249a73c08d16')",
+    "enabled":  "true"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('6189eace-13bd-435e-b438-2f38495bf9cc')",
+    "enabled":  "false"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('1a52c714-6ece-45d2-a8a9-505f97bdec1b')",
+    "enabled":  "true",
+    "presentationValues":  [
+                               {
+                                   "@odata.type":  "#microsoft.graph.groupPolicyPresentationValueList",
+                                   "values":  [
+                                                  {
+                                                      "name":  "*",
+                                                      "value":  null
+                                                  }
+                                              ],
+                                   "presentation@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('1a52c714-6ece-45d2-a8a9-505f97bdec1b')/presentations('75f2a4b4-fa3d-4acc-bbba-6a120e2ef96e')"
+                               }
+                           ]
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('270e643f-a1dd-49eb-8365-8292e9d6c7f7')",
+    "enabled":  "true"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('fdfedea9-c9d1-4109-9b59-883cfe2d861a')",
+    "enabled":  "true",
+    "presentationValues":  [
+                               {
+                                   "@odata.type":  "#microsoft.graph.groupPolicyPresentationValueText",
+                                   "value":  "ntlm,negotiate",
+                                   "presentation@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('fdfedea9-c9d1-4109-9b59-883cfe2d861a')/presentations('e6b8ffac-8e06-4a30-95c6-cec2dfc1a08f')"
+                               }
+                           ]
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('bc6a79f3-77d4-462c-9924-8ea74dc34386')",
+    "enabled":  "false"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('ccfd2123-ff05-4680-a4eb-ab2790b6d6ed')",
+    "enabled":  "false"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('6f317cd9-3683-476b-adea-b93eb74e07c1')",
+    "enabled":  "true"
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('7f7e757c-1137-4e59-8cd1-cb51ca6896c0')",
+    "enabled":  "true",
+    "presentationValues":  [
+                               {
+                                   "@odata.type":  "#microsoft.graph.groupPolicyPresentationValueText",
+                                   "value":  "tls1.2",
+                                   "presentation@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('7f7e757c-1137-4e59-8cd1-cb51ca6896c0')/presentations('10ecdc74-5985-4f1e-9308-ceadffe422ff')"
+                               }
+                           ]
+},
+{
+    "definition@odata.bind":  "https://graph.microsoft.com/beta/deviceManagement/groupPolicyDefinitions('f9de5937-2ff5-4c34-a5ec-d0d997787b68')",
+    "enabled":  "true"
+}
+]

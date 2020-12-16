@@ -1,0 +1,505 @@
+{
+    "@odata.type":  "#microsoft.graph.windows10CustomConfiguration",
+    "id":  "d214ac01-db86-4c5c-a2ed-05732d8875c3",
+    "lastModifiedDateTime":  "2020-11-20T15:59:47.646572Z",
+    "roleScopeTagIds":  [
+                            "0"
+                        ],
+    "supportsScopeTags":  true,
+    "deviceManagementApplicabilityRuleOsEdition":  null,
+    "deviceManagementApplicabilityRuleOsVersion":  null,
+    "deviceManagementApplicabilityRuleDeviceMode":  null,
+    "createdDateTime":  "2020-11-20T15:48:26.5136512Z",
+    "description":  "",
+    "displayName":  "Specialized-Config-Win10-Custom-CSP",
+    "version":  3,
+    "omaSettings":  [
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "NetworkIsolation/EnterpriseProxyServersAreAuthoritative",
+                            "description":  "EnterpriseProxyServersAreAuthoritative",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseProxyServersAreAuthoritative",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "NetworkIsolation/EnterpriseIPRangesAreAuthoritative",
+                            "description":  "EnterpriseIPRangesAreAuthoritative",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/NetworkIsolation/EnterpriseIPRangesAreAuthoritative",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Search/AllowIndexingEncryptedStoresOrItems",
+                            "description":  "AllowIndexingEncryptedStoresOrItems",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Search/AllowIndexingEncryptedStoresOrItems",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "LanmanWorkstation/EnableInsecureGuestLogons",
+                            "description":  "EnableInsecureGuestLogons",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/EnableInsecureGuestLogons",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Games/AllowAdvancedGamingServices",
+                            "description":  "AllowAdvancedGamingServices",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Games/AllowAdvancedGamingServices",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "ControlPolicyConflict/MDMWinsOverGP",
+                            "description":  "MDMWinsOverGP",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/ControlPolicyConflict/MDMWinsOverGP",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "SystemServices/ConfigureHomeGroupListenerServiceStartupMode",
+                            "description":  "ConfigureHomeGroupListenerServiceStartupMode",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/SystemServices/ConfigureHomeGroupListenerServiceStartupMode",
+                            "isEncrypted":  false,
+                            "value":  4,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "SystemServices/ConfigureHomeGroupProviderServiceStartupMode",
+                            "description":  "ConfigureHomeGroupProviderServiceStartupMode",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/SystemServices/ConfigureHomeGroupProviderServiceStartupMode",
+                            "isEncrypted":  false,
+                            "value":  4,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "ErrorReporting/DisableWindowsErrorReporting",
+                            "description":  "DisableWindowsErrorReporting",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/DisableWindowsErrorReporting",
+                            "isEncrypted":  false,
+                            "value":  " \u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/AllowStandbyWhenSleepingPluggedIn",
+                            "description":  "AllowStandbyWhenSleepingPluggedIn",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/AllowStandbyWhenSleepingPluggedIn",
+                            "isEncrypted":  false,
+                            "value":  "\u003cdisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/RequirePasswordWhenComputerWakesOnBattery",
+                            "description":  "RequirePasswordWhenComputerWakesOnBattery",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/RequirePasswordWhenComputerWakesOnBattery",
+                            "isEncrypted":  false,
+                            "value":  " \u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/RequirePasswordWhenComputerWakesPluggedIn",
+                            "description":  "RequirePasswordWhenComputerWakesPluggedIn",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/RequirePasswordWhenComputerWakesPluggedIn",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteAssistance/SolicitedRemoteAssistance",
+                            "description":  "SolicitedRemoteAssistance",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteAssistance/SolicitedRemoteAssistance",
+                            "isEncrypted":  false,
+                            "value":  "\u003cdisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "AutoPlay/DisallowAutoplayForNonVolumeDevices",
+                            "description":  "DisallowAutoplayForNonVolumeDevices",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/AutoPlay/DisallowAutoplayForNonVolumeDevices",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteDesktopServices/DoNotAllowDriveRedirection",
+                            "description":  "DoNotAllowDriveRedirection",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DoNotAllowDriveRedirection",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteDesktopServices/PromptForPasswordUponConnection",
+                            "description":  "PromptForPasswordUponConnection",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/PromptForPasswordUponConnection",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteDesktopServices/RequireSecureRPCCommunication",
+                            "description":  "RequireSecureRPCCommunication",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/RequireSecureRPCCommunication",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "DeviceLock/PreventLockScreenSlideShow",
+                            "description":  "PreventLockScreenSlideShow",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/DeviceLock/PreventLockScreenSlideShow",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSecurityGuide/EnableStructuredExceptionHandlingOverwriteProtection",
+                            "description":  "EnableStructuredExceptionHandlingOverwriteProtection",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSecurityGuide/EnableStructuredExceptionHandlingOverwriteProtection",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSLegacy/AllowICMPRedirectsToOverrideOSPFGeneratedRoutes",
+                            "description":  "AllowICMPRedirectsToOverrideOSPFGeneratedRoutes",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSLegacy/AllowICMPRedirectsToOverrideOSPFGeneratedRoutes",
+                            "isEncrypted":  false,
+                            "value":  "\u003cdisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSLegacy/AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers",
+                            "description":  "AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSLegacy/AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "WindowsDefenderApplicationGuard/Audit/AuditApplicationGuard",
+                            "description":  "AuditApplicationGuard",
+                            "omaUri":  "./Device/Vendor/MSFT/WindowsDefenderApplicationGuard/Audit/AuditApplicationGuard",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "DeviceLock/MaxDevicePasswordFailedAttempts",
+                            "description":  "MaxDevicePasswordFailedAttempts",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/DeviceLock/MaxDevicePasswordFailedAttempts",
+                            "isEncrypted":  false,
+                            "value":  9,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Start/HidePeopleBar",
+                            "description":  "HidePeopleBar ",
+                            "omaUri":  "./User/Vendor/MSFT/Policy/Config/Start/HidePeopleBar",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Browser/AllowFlash",
+                            "description":  "AllowFlash",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/Browser/AllowFlash",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Privacy/AllowCrossDeviceClipboard",
+                            "description":  "AllowCrossDeviceClipboard",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/Privacy/AllowCrossDeviceClipboard",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Experience/DoNotShowFeedbackNotifications",
+                            "description":  "HideFeedbackNotifications",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/Experience/DoNotShowFeedbackNotifications",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSecurityGuide/ApplyUACRestrictionsToLocalAccountsOnNetworkLogon",
+                            "description":  "ApplyUACRestrictionsToLocalAccountsOnNetworkLogon",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSecurityGuide/ApplyUACRestrictionsToLocalAccountsOnNetworkLogon",
+                            "isEncrypted":  false,
+                            "value":  "\u003cEnabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Connectivity/ProhibitInstallationAndConfigurationOfNetworkBridge",
+                            "description":  "ProhibitInstallationAndConfigurationOfNetworkBridge",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Connectivity/ProhibitInstallationAndConfigurationOfNetworkBridge",
+                            "isEncrypted":  false,
+                            "value":  "\u003cEnabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteAssistance/UnsolicitedRemoteAssistance",
+                            "description":  "UnsolicitedRemoteAssistance",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteAssistance/UnsolicitedRemoteAssistance",
+                            "isEncrypted":  false,
+                            "value":  "\u003cDisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "ApplicationManagement/MSIAlwaysInstallWithElevatedPrivileges",
+                            "description":  "MSIAlwaysInstallWithElevatedPrivileges",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/ApplicationManagement/MSIAlwaysInstallWithElevatedPrivileges",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteManagement/AllowBasicAuthentication_Client",
+                            "description":  "AllowBasicAuthentication_Client",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowBasicAuthentication_Client",
+                            "isEncrypted":  false,
+                            "value":  "\u003cDisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemoteManagement/AllowBasicAuthentication_Service",
+                            "description":  "AllowBasicAuthentication_Service",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowBasicAuthentication_Service",
+                            "isEncrypted":  false,
+                            "value":  "\u003cDisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSLegacy/IPv6SourceRoutingProtectionLevel",
+                            "description":  "IPv6SourceRoutingProtectionLevel",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSLegacy/IPv6SourceRoutingProtectionLevel",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"DisableIPSourceRoutingIPv6\" value=\"2\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "CredentialsUI/EnumerateAdministrators",
+                            "description":  "EnumerateAdministrators",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/CredentialsUI/EnumerateAdministrators",
+                            "isEncrypted":  false,
+                            "value":  "\u003cdisabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Autoplay/TurnOffAutoPlay",
+                            "description":  "TurnOffAutoPlay",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Autoplay/TurnOffAutoPlay",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"Autorun_Box\" value=\"255\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Autoplay/SetDefaultAutoRunBehavior",
+                            "description":  "SetDefaultAutoRunBehavior",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Autoplay/SetDefaultAutoRunBehavior",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"NoAutorun_Dropdown\" value=\"1\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSecurityGuide/ConfigureSMBV1ClientDriver",
+                            "description":  "ConfigureSMBV1ClientDriver",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSecurityGuide/ConfigureSMBV1ClientDriver",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e \n\u003cdata id=\"Pol_SecGuide_SMB1ClientDriver\" value=\"4\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "MSSLegacy/IPSourceRoutingProtectionLevel",
+                            "description":  "IPSourceRoutingProtectionLevel",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSLegacy/IPSourceRoutingProtectionLevel",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"DisableIPSourceRouting\" value=\"2\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "DeviceInstallation/PreventInstallationOfMatchingDeviceSetupClasses",
+                            "description":  "PreventInstallationOfMatchingDeviceSetupClasses",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/DeviceInstallation/PreventInstallationOfMatchingDeviceSetupClasses",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\n\u003cdata id=\"DeviceInstall_Classes_Deny_Retroactive\" value=\"true\"/\u003e\n\u003cData id=\"DeviceInstall_Classes_Deny_List\" value=\"1\u0026#xF000;{d48179be-ec20-11d1-b6b8-00c04fa372a7}\u0026#xF000;2\u0026#xF000;{7ebefbc0-3200-11d2-b4c2-00a0C9697d07}\u0026#xF000;3\u0026#xF000;{c06ff265-ae09-48f0-812c-16753d7cba83}\u0026#xF000;4\u0026#xF000;{6bdd1fc1-810f-11d0-bec7-08002be2092f}\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "DeviceInstallation/PreventInstallationOfMatchingDeviceIDs",
+                            "description":  "PreventInstallationOfMatchingDeviceIDs",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/DeviceInstallation/PreventInstallationOfMatchingDeviceIDs",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\n\u003cdata id=\"DeviceInstall_IDs_Deny_Retroactive\" value=\"true\"/\u003e\n\u003cData id=\"DeviceInstall_IDs_Deny_List\" value=\"1\u0026#xF000;PCI\\CC_0C0A\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "DeviceGuard/EnableVirtualizationBasedSecurity",
+                            "description":  "EnableVirtualizationBasedSecurity",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/DeviceGuard/EnableVirtualizationBasedSecurity",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "DeviceGuard/LSACfgFlags",
+                            "description":  "LSACfgFlags",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/DeviceGuard/LsaCfgFlags",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "DeviceGuard/PlatformSecurityFeatures",
+                            "description":  "PlatformSecurityFeatures",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/DeviceGuard/RequirePlatformSecurityFeatures",
+                            "isEncrypted":  false,
+                            "value":  3,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "DeviceGuard/ConfigureSystemGuardLaunch",
+                            "description":  "ConfigureSystemGuardLaunch",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/DeviceGuard/ConfigureSystemGuardLaunch",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Start/HideSleep",
+                            "description":  "HideSleep",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Start/HideSleep",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "Start/HideHibernate",
+                            "description":  "HideHibernate",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Start/HideHibernate",
+                            "isEncrypted":  false,
+                            "value":  0,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/StandbyTimeoutPluggedIn",
+                            "description":  "StandbyTimeoutPluggedIn",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/StandbyTimeoutPluggedIn",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"EnterACStandbyTimeOut\" value=\"1800\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/HibernateTimeoutPluggedIn",
+                            "description":  "HibernateTimeoutPluggedIn",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/HibernateTimeoutPluggedIn",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"EnterACHibernateTimeOut\" value=\"3600\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "Power/HibernateTimeoutOnBattery",
+                            "description":  "HibernateTimeoutOnBattery",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/HibernateTimeoutOnBattery",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e\u003cdata id=\"EnterDCHibernateTimeOut\" value=\"3600\"/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "RemovableStroageDevices/CDDenyWrite",
+                            "description":  "CDDenyWrite",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/RemovableStorageDevices\\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}/CDandDVD_DenyWrite_Access_2",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingString",
+                            "displayName":  "CredentialsUI/DisablePasswordReveal",
+                            "description":  "DisablePasswordReveal",
+                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/CredentialsUI/DisablePasswordReveal",
+                            "isEncrypted":  false,
+                            "value":  "\u003cenabled/\u003e"
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "System/AllowDeviceNameInDiagnosticData",
+                            "description":  "AllowDeviceNameInDiagnosticData",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/System/AllowDeviceNameInDiagnosticData",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "System/ConfigureTelemetryOptInSettingsUx",
+                            "description":  "ConfigureTelemetryOptInSettingsUx",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/System/ConfigureTelemetryOptInSettingsUx",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "System/LimitEnhancedDiagnosticDataWindowsAnalytics",
+                            "description":  "LimitEnhancedDiagnosticDataWindowsAnalytics",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/System/LimitEnhancedDiagnosticDataWindowsAnalytics",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        },
+                        {
+                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
+                            "displayName":  "System/ConfigureTelemetryOptInChangeNotification",
+                            "description":  "ConfigureTelemetryOptInChangeNotification",
+                            "omaUri":  "./Vendor/MSFT/Policy/Config/System/ConfigureTelemetryOptInChangeNotification",
+                            "isEncrypted":  false,
+                            "value":  1,
+                            "isReadOnly":  false
+                        }
+                    ],
+    "assignments@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceConfigurations(\u0027d214ac01-db86-4c5c-a2ed-05732d8875c3\u0027)/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/assignments",
+    "assignments":  [
+                        {
+                            "id":  "d214ac01-db86-4c5c-a2ed-05732d8875c3_c99ee281-71f3-457b-9bcf-41f710263994",
+                            "source":  "direct",
+                            "sourceId":  "d214ac01-db86-4c5c-a2ed-05732d8875c3",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Specialized Workstations"
+                                       }
+                        }
+                    ]
+}

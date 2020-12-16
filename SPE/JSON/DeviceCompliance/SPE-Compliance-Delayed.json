@@ -1,0 +1,88 @@
+{
+    "@odata.type":  "#microsoft.graph.windows10CompliancePolicy",
+    "roleScopeTagIds":  [
+                            "0"
+                        ],
+    "id":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9",
+    "createdDateTime":  "2020-11-30T15:27:52.1330905Z",
+    "description":  "Intune compliance settings to apply after 24 hours\n",
+    "lastModifiedDateTime":  "2020-11-30T15:27:52.1330905Z",
+    "displayName":  "Specialized-Compliance-Delayed",
+    "version":  1,
+    "passwordRequired":  false,
+    "passwordBlockSimple":  false,
+    "passwordRequiredToUnlockFromIdle":  false,
+    "passwordMinutesOfInactivityBeforeLock":  null,
+    "passwordExpirationDays":  null,
+    "passwordMinimumLength":  null,
+    "passwordMinimumCharacterSetCount":  null,
+    "passwordRequiredType":  "deviceDefault",
+    "passwordPreviousPasswordBlockCount":  null,
+    "requireHealthyDeviceReport":  false,
+    "osMinimumVersion":  "10.0.18363.476",
+    "osMaximumVersion":  null,
+    "mobileOsMinimumVersion":  null,
+    "mobileOsMaximumVersion":  null,
+    "earlyLaunchAntiMalwareDriverEnabled":  false,
+    "bitLockerEnabled":  true,
+    "secureBootEnabled":  true,
+    "codeIntegrityEnabled":  true,
+    "storageRequireEncryption":  false,
+    "activeFirewallRequired":  true,
+    "defenderEnabled":  true,
+    "defenderVersion":  null,
+    "signatureOutOfDate":  true,
+    "rtpEnabled":  true,
+    "antivirusRequired":  true,
+    "antiSpywareRequired":  true,
+    "deviceThreatProtectionEnabled":  false,
+    "deviceThreatProtectionRequiredSecurityLevel":  "unavailable",
+    "configurationManagerComplianceRequired":  false,
+    "tpmRequired":  true,
+    "deviceCompliancePolicyScript":  null,
+    "validOperatingSystemBuildRanges":  [
+
+                                        ],
+    "assignments":  [
+                        {
+                            "id":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9_add56c8b-3fb1-43c8-a7d8-3abcc9f9ac64",
+                            "source":  "direct",
+                            "sourceId":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.exclusionGroupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Emergency Breakglass"
+                                       }
+                        },
+                        {
+                            "id":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9_af977e97-e18b-4272-bb63-81fb28204780",
+                            "source":  "direct",
+                            "sourceId":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Specialized Workstation Users"
+                                       }
+                        }
+                    ],
+    "scheduledActionsForRule":  [
+                                    {
+                                        "id":  "070e9f28-9bf1-41cc-b5bb-77229343d3b9",
+                                        "ruleName":  null,
+                                        "scheduledActionConfigurations@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceCompliancePolicies(\u0027070e9f28-9bf1-41cc-b5bb-77229343d3b9\u0027)/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/scheduledActionsForRule(\u0027070e9f28-9bf1-41cc-b5bb-77229343d3b9\u0027)/scheduledActionConfigurations",
+                                        "scheduledActionConfigurations":  [
+                                                                              {
+                                                                                  "id":  "cab389d9-845f-4d0a-a9cd-e64abbcbd859",
+                                                                                  "gracePeriodHours":  24,
+                                                                                  "actionType":  "block",
+                                                                                  "notificationTemplateId":  "00000000-0000-0000-0000-000000000000",
+                                                                                  "notificationMessageCCList":  [
+
+                                                                                                                ]
+                                                                              }
+                                                                          ]
+                                    }
+                                ]
+}
