@@ -1,0 +1,88 @@
+{
+    "@odata.type":  "#microsoft.graph.windows10CompliancePolicy",
+    "roleScopeTagIds":  [
+                            "0"
+                        ],
+    "id":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d",
+    "createdDateTime":  "2020-11-30T15:27:50.8972649Z",
+    "description":  "Defender ATP-specific compliance settings to apply after 24 hours\n",
+    "lastModifiedDateTime":  "2020-11-30T15:27:50.8972649Z",
+    "displayName":  "Specialized-Compliance-ATP",
+    "version":  1,
+    "passwordRequired":  false,
+    "passwordBlockSimple":  false,
+    "passwordRequiredToUnlockFromIdle":  false,
+    "passwordMinutesOfInactivityBeforeLock":  null,
+    "passwordExpirationDays":  null,
+    "passwordMinimumLength":  null,
+    "passwordMinimumCharacterSetCount":  null,
+    "passwordRequiredType":  "deviceDefault",
+    "passwordPreviousPasswordBlockCount":  null,
+    "requireHealthyDeviceReport":  false,
+    "osMinimumVersion":  "10.0.18363.476",
+    "osMaximumVersion":  null,
+    "mobileOsMinimumVersion":  null,
+    "mobileOsMaximumVersion":  null,
+    "earlyLaunchAntiMalwareDriverEnabled":  false,
+    "bitLockerEnabled":  false,
+    "secureBootEnabled":  false,
+    "codeIntegrityEnabled":  false,
+    "storageRequireEncryption":  false,
+    "activeFirewallRequired":  false,
+    "defenderEnabled":  false,
+    "defenderVersion":  null,
+    "signatureOutOfDate":  false,
+    "rtpEnabled":  false,
+    "antivirusRequired":  false,
+    "antiSpywareRequired":  false,
+    "deviceThreatProtectionEnabled":  true,
+    "deviceThreatProtectionRequiredSecurityLevel":  "secured",
+    "configurationManagerComplianceRequired":  false,
+    "tpmRequired":  false,
+    "deviceCompliancePolicyScript":  null,
+    "validOperatingSystemBuildRanges":  [
+
+                                        ],
+    "assignments":  [
+                        {
+                            "id":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d_add56c8b-3fb1-43c8-a7d8-3abcc9f9ac64",
+                            "source":  "direct",
+                            "sourceId":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.exclusionGroupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Emergency Breakglass"
+                                       }
+                        },
+                        {
+                            "id":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d_af977e97-e18b-4272-bb63-81fb28204780",
+                            "source":  "direct",
+                            "sourceId":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Specialized Workstation Users"
+                                       }
+                        }
+                    ],
+    "scheduledActionsForRule":  [
+                                    {
+                                        "id":  "a8994b69-5205-4614-ae3e-150c2d4f2c5d",
+                                        "ruleName":  null,
+                                        "scheduledActionConfigurations@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceCompliancePolicies(\u0027a8994b69-5205-4614-ae3e-150c2d4f2c5d\u0027)/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/microsoft.graph.windows10CompliancePolicy/scheduledActionsForRule(\u0027a8994b69-5205-4614-ae3e-150c2d4f2c5d\u0027)/scheduledActionConfigurations",
+                                        "scheduledActionConfigurations":  [
+                                                                              {
+                                                                                  "id":  "44bd1593-f79a-4a98-8acf-f20b496c621d",
+                                                                                  "gracePeriodHours":  24,
+                                                                                  "actionType":  "block",
+                                                                                  "notificationTemplateId":  "00000000-0000-0000-0000-000000000000",
+                                                                                  "notificationMessageCCList":  [
+
+                                                                                                                ]
+                                                                              }
+                                                                          ]
+                                    }
+                                ]
+}

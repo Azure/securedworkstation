@@ -1,0 +1,44 @@
+{
+    "@odata.type":  "#microsoft.graph.windowsIdentityProtectionConfiguration",
+    "id":  "a8a104c0-bf28-478a-a665-8fb513649406",
+    "lastModifiedDateTime":  "2020-11-17T16:56:18.7871406Z",
+    "roleScopeTagIds":  [
+                            "0"
+                        ],
+    "supportsScopeTags":  true,
+    "deviceManagementApplicabilityRuleOsEdition":  null,
+    "deviceManagementApplicabilityRuleOsVersion":  null,
+    "deviceManagementApplicabilityRuleDeviceMode":  null,
+    "createdDateTime":  "2020-11-17T16:32:50.1110084Z",
+    "description":  "",
+    "displayName":  "Enterprise-Config-Win10-Identity-Protection-UI",
+    "version":  2,
+    "useSecurityKeyForSignin":  true,
+    "enhancedAntiSpoofingForFacialFeaturesEnabled":  true,
+    "pinMinimumLength":  8,
+    "pinMaximumLength":  100,
+    "pinUppercaseCharactersUsage":  "blocked",
+    "pinLowercaseCharactersUsage":  "blocked",
+    "pinSpecialCharactersUsage":  "blocked",
+    "pinExpirationInDays":  null,
+    "pinPreviousBlockCount":  null,
+    "pinRecoveryEnabled":  true,
+    "securityDeviceRequired":  true,
+    "unlockWithBiometricsEnabled":  true,
+    "useCertificatesForOnPremisesAuthEnabled":  false,
+    "windowsHelloForBusinessBlocked":  false,
+    "assignments@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceConfigurations(\u0027a8a104c0-bf28-478a-a665-8fb513649406\u0027)/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/assignments",
+    "assignments":  [
+                        {
+                            "id":  "a8a104c0-bf28-478a-a665-8fb513649406_82852fee-f2a0-44cf-b5b8-8db17c72a037",
+                            "source":  "direct",
+                            "sourceId":  "a8a104c0-bf28-478a-a665-8fb513649406",
+                            "target":  {
+                                           "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
+                                           "deviceAndAppManagementAssignmentFilterId":  null,
+                                           "deviceAndAppManagementAssignmentFilterType":  "none",
+                                           "groupId":  "Enterprise Workstations"
+                                       }
+                        }
+                    ]
+}
