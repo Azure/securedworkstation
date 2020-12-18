@@ -18,19 +18,19 @@ These files are provided as samples, and a starting point to consider when you b
    * assumes that the user has Privileged rights on the local device
    * allows local Windows Defender Firewall rules to be merged with applied Device Configuration profile settings
 
-    [Enterprise policy settings and deployment script](ENT/Enterprise.md)
+    [Enterprise policy settings and deployment script](ENT/Readme.md)
 
 2. **Specialized** - provides increased security controls for roles with a significantly elevated business impact (if compromised by an attacker or malicious insider). The Specialized profile has the highlighted differences from the Enterprise Profile
    * assumes that the user has Standard Privileges on the devices
    * implements Application Execution Control in Audit mode
    * does not merge local Windows Defender Firewall rules
   
-    [Specialized policy settings and deployment script](SPE/Specialized.md)
+    [Specialized policy settings and deployment script](SPE/Readme.md)
 
-3. **Privileged** - is the highest level of security designed for roles that could easily cause a major incident and potential material damage to the organization in the hands of an attacker or malicious insider. This typically includes technical roles with administrative permissions on most or all enterprise systems (and sometimes includes a select few business critical roles). The Specialized profile has the highlighted differences from the Specialized Profile
+3. **Privileged** - is the highest level of security designed for roles that could easily cause a major incident and potential material damage to the organization in the hands of an attacker or malicious insider. This typically includes technical roles with administrative permissions on most or all enterprise systems (and sometimes includes a select few business critical roles). The Privileged profile has the highlighted differences from the Specialized Profile
    * implements Application Execution Control in Enforced mode
    * blocks all outbound connections apart from defined Windows Defender Firewall rules
   
-    [Privileged policy settings and deployment script](PAW/PAW.md)
+    [Privileged policy settings and deployment script](PAW/Readme.md)
 
 **Legacy** - The content of this directory reflects V1 of Azure Secure Workstation
