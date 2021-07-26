@@ -378,7 +378,7 @@
                                                   "*.office.net",
                                                   "*.officeapps.live.com",
                                                   "aka.ms",
-                                                  "*.powershellgallery.com,i.imgur.com"
+                                                  "*.powershellgallery.com"
                                               ],
                                "useForLocalAddresses":  false
                            },
