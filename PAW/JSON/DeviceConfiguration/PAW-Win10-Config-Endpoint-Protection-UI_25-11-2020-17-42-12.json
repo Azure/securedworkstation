@@ -872,7 +872,7 @@
                                   "globalPortRulesFromGroupPolicyNotMerged":  true,
                                   "connectionSecurityRulesFromGroupPolicyMerged":  false,
                                   "connectionSecurityRulesFromGroupPolicyNotMerged":  true,
-                                  "outboundConnectionsRequired":  false,
+                                  "outboundConnectionsRequired":  true,
                                   "outboundConnectionsBlocked":  true,
                                   "inboundConnectionsRequired":  false,
                                   "inboundConnectionsBlocked":  true,

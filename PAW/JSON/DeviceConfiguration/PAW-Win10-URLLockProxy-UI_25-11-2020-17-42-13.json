@@ -308,7 +308,7 @@
     "tenantLockdownRequireNetworkDuringOutOfBoxExperience":  false,
     "appManagementMSIAllowUserControlOverInstall":  false,
     "appManagementMSIAlwaysInstallWithElevatedPrivileges":  false,
-    "dataProtectionBlockDirectMemoryAccess":  false,
+    "dataProtectionBlockDirectMemoryAccess":  true,
     "appManagementPackageFamilyNamesToLaunchAfterLogOn":  [
 
                                                           ],
