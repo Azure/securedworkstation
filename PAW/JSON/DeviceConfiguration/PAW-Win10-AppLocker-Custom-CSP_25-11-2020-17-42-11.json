@@ -70,7 +70,7 @@
                 "@odata.type": "#microsoft.graph.groupAssignmentTarget",
                 "deviceAndAppManagementAssignmentFilterId": null,
                 "deviceAndAppManagementAssignmentFilterType": "none",
-                "groupId": "Privileged Workstations"
+                "groupId": "Secure-Access-Workstations"
             }
         }
     ]
