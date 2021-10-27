@@ -1,0 +1,95 @@
+<RuleCollection Type="Exe" EnforcementMode="Enabled">
+	<FilePublisherRule Id="874616bc-ef85-49e6-937a-24ea789438d8" Name="FILESYNCCONFIG.EXE, in MICROSOFT ONEDRIVE, from O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT ONEDRIVE" BinaryName="FILESYNCCONFIG.EXE">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+	<FilePublisherRule Id="2d472726-7eeb-49ac-93fd-3294f68031b8" Name="INTUNEWINAPPUTIL.EXE, version 6.1904.0.0 and above, in MICROSOFT� INTUNE�, from O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+		<Conditions>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� INTUNE�" BinaryName="INTUNEWINAPPUTIL.EXE">
+				<BinaryVersionRange LowSection="6.1904.0.0" HighSection="*" />
+			</FilePublisherCondition>
+		</Conditions>
+	</FilePublisherRule>
+	<FilePathRule Id="fd686d83-a829-4351-8ff4-27c7de5755d2" Name="(Default Rule) All files" Description="Allows members of the local Administrators group to run all applications." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+		<Conditions>
+			<FilePathCondition Path="*" />
+		</Conditions>
+	</FilePathRule>
+	<FilePathRule Id="cdfd5d1c-828f-4bd6-9542-1395c6088f82" Name="All files located in the Program Files folder" Description="Allows members of the Everyone group to run applications that are located in the Program Files folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+		<Conditions>
+			<FilePathCondition Path="%PROGRAMFILES%\*" />
+		</Conditions>
+	</FilePathRule>
+	<FilePathRule Id="38080c1b-54bc-4f7e-804d-fafb70bf781b" Name="All files located in the Windows folder" Description="Allows members of the Everyone group to run applications that are located in the Windows folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+		<Conditions>
+			<FilePathCondition Path="%WINDIR%\*" />
+		</Conditions>
+		<Exceptions>
+			<FilePathCondition Path="%WINDIR%\registration\crmlog\*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\esif_umdf2\data\*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\esif_umdf2\data:*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\helloface\data\*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\helloface\data:*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\sensorscx0102\data\*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\sensorscx0102\data:*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\sensorshidclassdriver\data\*" />
+			<FilePathCondition Path="%WINDIR%\servicestate\sensorshidclassdriver\data:*" />
+			<FilePathCondition Path="%SYSTEM32%\com\dmp\*" />
+			<FilePathCondition Path="%SYSTEM32%\drivers\driverdata\*" />
+			<FilePathCondition Path="%SYSTEM32%\drivers\driverdata:*" />
+			<FilePathCondition Path="%SYSTEM32%\fxstmp\*" />
+			<FilePathCondition Path="%SYSTEM32%\microsoft\crypto\rsa\machinekeys\*" />
+			<FilePathCondition Path="%SYSTEM32%\microsoft\crypto\rsa\machinekeys:*" />
+			<FilePathCondition Path="%SYSTEM32%\spool\drivers\color\*" />
+			<FilePathCondition Path="%SYSTEM32%\spool\printers\*" />
+			<FilePathCondition Path="%SYSTEM32%\spool\servers\*" />
+			<FilePathCondition Path="%SYSTEM32%\tasks\*" />
+			<FilePathCondition Path="%SYSTEM32%\tasks_migrated\*" />
+			<FilePathCondition Path="%WINDIR%\tasks\*" />
+			<FilePathCondition Path="%WINDIR%\temp\*" />
+			<FilePathCondition Path="%WINDIR%\tracing\*" />
+			<FilePathCondition Path="%WINDIR%\tracing:*" />
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="MSBUILD.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� WINDOWS� OPERATING SYSTEM" BinaryName="RUNAS.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="REGSVCS.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� WINDOWS� OPERATING SYSTEM" BinaryName="PRESENTATIONHOST.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="INTERNET EXPLORER" BinaryName="MSHTA.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� WINDOWS� OPERATING SYSTEM" BinaryName="CIPHER.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="INSTALLUTIL.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� WINDOWS� OPERATING SYSTEM" BinaryName="WMIC.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="MICROSOFT.WORKFLOW.COMPILER.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="IEEXEC.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+			<FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT� .NET FRAMEWORK" BinaryName="REGASM.EXE">
+				<BinaryVersionRange LowSection="*" HighSection="*" />
+			</FilePublisherCondition>
+		</Exceptions>
+	</FilePathRule>
+	<FilePathRule Id="b91a15a0-1086-4750-bcdd-b1aad9ab0a92" Name="Additional allowed path: %OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" Description="Allows Everyone to execute from %OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" UserOrGroupSid="S-1-1-0" Action="Allow">
+		<Conditions>
+			<FilePathCondition Path="%OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" />
+		</Conditions>
+	</FilePathRule>
+</RuleCollection>

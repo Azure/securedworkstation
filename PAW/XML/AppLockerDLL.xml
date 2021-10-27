@@ -1,0 +1,86 @@
+<RuleCollection Type="Dll" EnforcementMode="Enabled">
+    <FilePublisherRule Id="0645a114-e55a-4d95-9511-5905489867c6" Name="Disallow PowerShell v2" Description="Explicitly deny signed DLLs needed for PowerShell v2 (implicitly allow 10.* and above)" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT (R) WINDOWS (R) OPERATING SYSTEM" BinaryName="SYSTEM.MANAGEMENT.AUTOMATION.DLL">
+          <BinaryVersionRange LowSection="*" HighSection="9.9.9.9" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePathRule Id="fe64f59f-6fca-45e5-a731-0f6715327c38" Name="(Default Rule) All DLLs" Description="Allows members of the local Administrators group to load all DLLs." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="860f0fa5-afd9-4929-880b-cf0c6f052c67" Name="Microsoft Windows DLLs" Description="Allows members of the Everyone group to load DLLs located in the Windows folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%WINDIR%\registration\crmlog\*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\esif_umdf2\data\*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\esif_umdf2\data:*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\helloface\data\*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\helloface\data:*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\sensorscx0102\data\*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\sensorscx0102\data:*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\sensorshidclassdriver\data\*" />
+        <FilePathCondition Path="%WINDIR%\servicestate\sensorshidclassdriver\data:*" />
+		<FilePathCondition Path="%SYSTEM32%\com\dmp\*" />
+        <FilePathCondition Path="%SYSTEM32%\drivers\driverdata\*" />
+        <FilePathCondition Path="%SYSTEM32%\drivers\driverdata:*" />
+        <FilePathCondition Path="%SYSTEM32%\fxstmp\*" />
+        <FilePathCondition Path="%SYSTEM32%\microsoft\crypto\rsa\machinekeys\*" />
+        <FilePathCondition Path="%SYSTEM32%\microsoft\crypto\rsa\machinekeys:*" />
+        <FilePathCondition Path="%SYSTEM32%\spool\drivers\color\*" />
+        <FilePathCondition Path="%SYSTEM32%\spool\printers\*" />
+        <FilePathCondition Path="%SYSTEM32%\spool\servers\*" />
+        <FilePathCondition Path="%SYSTEM32%\tasks\*" />
+        <FilePathCondition Path="%SYSTEM32%\tasks_migrated\*" />
+        <FilePathCondition Path="%WINDIR%\tasks\*" />
+        <FilePathCondition Path="%WINDIR%\temp\*" />
+        <FilePathCondition Path="%WINDIR%\tracing\*" />
+        <FilePathCondition Path="%WINDIR%\tracing:*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="e431d080-a8e3-48d6-904b-19bda95b3fb7" Name="All DLLs located in the Program Files folder" Description="Allows members of the Everyone group to load DLLs that are located in the Program Files folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="4f39bf10-f9ea-49d5-ba26-55535ba5fb35" Name="Disallow PowerShell v2" Description="Explicitly deny unsigned JIT native images needed for PowerShell v2" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\assembly\NativeImages_v2.0.50727_32\System.Management.A#\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="31d0a17e-420f-4b79-953f-d681fd69289f" Name="Disallow PowerShell v2" Description="Explicitly deny unsigned JIT native images needed for PowerShell v2" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\assembly\NativeImages_v2.0.50727_64\System.Management.A#\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="53d190c2-c82b-4f32-a1fa-ce5c2eb65861" Name="Additional allowed path: %OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" Description="Allows Everyone to execute from %OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\PROGRAMDATA\MICROSOFT\WINDOWS DEFENDER\PLATFORM\*" />
+      </Conditions>
+    </FilePathRule>
+	<FilePublisherRule Id="471a6344-aeac-4474-b72e-25bb3a3780d9" Name="Allow selected files from %OSDRIVE%\.~BT\SOURCES during Windows upgrade: Signer/product/file rule for O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US/MICROSOFT® WINDOWS® OPERATING SYSTEM/GENERALTEL.DLL" Description="Information acquired from TrustedSigners.ps1" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="GENERALTEL.DLL">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="442f7221-ea8f-47f7-8955-39d711f939ea" Name="Allow selected files from %OSDRIVE%\.~BT\SOURCES during Windows upgrade: Signer/product/file rule for O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US/MICROSOFT® WINDOWS® OPERATING SYSTEM/WDSCORE.DLL" Description="Information acquired from TrustedSigners.ps1" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="WDSCORE.DLL">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="ceeffa5c-0952-4132-9a97-9fdb86c62c3e" Name="Allow selected files from %OSDRIVE%\.~BT\SOURCES during Windows upgrade: Signer/product/file rule for O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US/MICROSOFT® WINDOWS® OPERATING SYSTEM/AEINV.DLL" Description="Information acquired from TrustedSigners.ps1" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="AEINV.DLL">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>

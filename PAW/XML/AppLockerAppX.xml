@@ -1,0 +1,9 @@
+<RuleCollection Type="Appx" EnforcementMode="Enabled">
+    <FilePublisherRule Id="5b2a8477-5617-4653-badd-81ee23fc2bb6" Name="All signed packaged apps" Description="Allows members of the Everyone group to run packaged apps that are signed." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>
