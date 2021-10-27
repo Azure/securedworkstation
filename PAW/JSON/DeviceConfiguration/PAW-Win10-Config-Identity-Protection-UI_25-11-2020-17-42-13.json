@@ -1,44 +1,44 @@
 {
-    "@odata.type":  "#microsoft.graph.windowsIdentityProtectionConfiguration",
-    "id":  "9218cdda-e28d-451e-96c6-1e6b9a9f292d",
-    "lastModifiedDateTime":  "2020-11-16T18:06:54.6907925Z",
-    "roleScopeTagIds":  [
-                            "0"
-                        ],
-    "supportsScopeTags":  true,
-    "deviceManagementApplicabilityRuleOsEdition":  null,
-    "deviceManagementApplicabilityRuleOsVersion":  null,
-    "deviceManagementApplicabilityRuleDeviceMode":  null,
-    "createdDateTime":  "2020-11-16T17:58:38.498837Z",
-    "description":  "",
-    "displayName":  "PAW-Win10-Config-Identity-Protection-UI",
-    "version":  2,
-    "useSecurityKeyForSignin":  true,
-    "enhancedAntiSpoofingForFacialFeaturesEnabled":  true,
-    "pinMinimumLength":  8,
-    "pinMaximumLength":  100,
-    "pinUppercaseCharactersUsage":  "blocked",
-    "pinLowercaseCharactersUsage":  "blocked",
-    "pinSpecialCharactersUsage":  "blocked",
-    "pinExpirationInDays":  null,
-    "pinPreviousBlockCount":  null,
-    "pinRecoveryEnabled":  true,
-    "securityDeviceRequired":  true,
-    "unlockWithBiometricsEnabled":  true,
-    "useCertificatesForOnPremisesAuthEnabled":  false,
-    "windowsHelloForBusinessBlocked":  false,
-    "assignments@odata.context":  "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceConfigurations(\u00279218cdda-e28d-451e-96c6-1e6b9a9f292d\u0027)/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/assignments",
-    "assignments":  [
-                        {
-                            "id":  "9218cdda-e28d-451e-96c6-1e6b9a9f292d_bd1f65b9-891f-40ed-89c2-22433a98ea02",
-                            "source":  "direct",
-                            "sourceId":  "9218cdda-e28d-451e-96c6-1e6b9a9f292d",
-                            "target":  {
-                                           "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
-                                           "deviceAndAppManagementAssignmentFilterId":  null,
-                                           "deviceAndAppManagementAssignmentFilterType":  "none",
-                                           "groupId":  "Privileged Workstations"
-                                       }
-                        }
-                    ]
+    "@odata.type": "#microsoft.graph.windowsIdentityProtectionConfiguration",
+    "id": "9218cdda-e28d-451e-96c6-1e6b9a9f292d",
+    "lastModifiedDateTime": "2020-11-16T18:06:54.6907925Z",
+    "roleScopeTagIds": [
+        "0"
+    ],
+    "supportsScopeTags": true,
+    "deviceManagementApplicabilityRuleOsEdition": null,
+    "deviceManagementApplicabilityRuleOsVersion": null,
+    "deviceManagementApplicabilityRuleDeviceMode": null,
+    "createdDateTime": "2020-11-16T17:58:38.498837Z",
+    "description": "",
+    "displayName": "PAW-Win10-Config-Identity-Protection-UI",
+    "version": 2,
+    "useSecurityKeyForSignin": true,
+    "enhancedAntiSpoofingForFacialFeaturesEnabled": true,
+    "pinMinimumLength": 6,
+    "pinMaximumLength": 100,
+    "pinUppercaseCharactersUsage": "blocked",
+    "pinLowercaseCharactersUsage": "blocked",
+    "pinSpecialCharactersUsage": "blocked",
+    "pinExpirationInDays": null,
+    "pinPreviousBlockCount": null,
+    "pinRecoveryEnabled": true,
+    "securityDeviceRequired": true,
+    "unlockWithBiometricsEnabled": true,
+    "useCertificatesForOnPremisesAuthEnabled": false,
+    "windowsHelloForBusinessBlocked": false,
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceConfigurations(\u00279218cdda-e28d-451e-96c6-1e6b9a9f292d\u0027)/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10CustomConfiguration/microsoft.graph.windows10GeneralConfiguration/microsoft.graph.windows10EndpointProtectionConfiguration/microsoft.graph.windowsIdentityProtectionConfiguration/assignments",
+    "assignments": [
+        {
+            "id": "9218cdda-e28d-451e-96c6-1e6b9a9f292d_bd1f65b9-891f-40ed-89c2-22433a98ea02",
+            "source": "direct",
+            "sourceId": "9218cdda-e28d-451e-96c6-1e6b9a9f292d",
+            "target": {
+                "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+                "deviceAndAppManagementAssignmentFilterId": null,
+                "deviceAndAppManagementAssignmentFilterType": "none",
+                "groupId": "Privileged Workstations"
+            }
+        }
+    ]
 }
