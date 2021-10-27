@@ -46,6 +46,9 @@ Function Set-AADAuth {
     Set-AADAuth -user $user    
 ####################################################    
     
+write-host "Loading helper functions"
+. $ScriptDir/../Helper-Functions.ps1
+
 #write-host "Adding App Registrtion"
 #. $ScriptDir/AppRegistration_Create.ps1
 #Start-Sleep -s 5
@@ -64,6 +67,10 @@ Function Set-AADAuth {
 #write-host "Adding Conditional Access Policies"
 #. $ScriptDir/CA-Policies-Import_PAW.ps1 -State "Disabled"
 #Start-Sleep -s 5
+
+write-host "Creating Scope tags"
+Create-IntuneScopeTag -Name 'Privileged-Identity'
+Start-Sleep -s 5
 
 write-host "Adding Device Configuration Profiles"
 . $ScriptDir/Import-PAW-DeviceConfiguration.ps1
