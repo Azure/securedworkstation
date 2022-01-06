@@ -218,7 +218,7 @@ NAME: Add-DeviceManagementScript
     "scriptContent": "$B64File",
     "runAsAccount": "system",
     "enforceSignatureCheck": "false",
-    "fileName": "$FileName"
+    "fileName": "$FileName",
     "runAs32Bit": "true"
 }
 "@
