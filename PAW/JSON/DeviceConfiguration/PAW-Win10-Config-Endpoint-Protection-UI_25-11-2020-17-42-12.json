@@ -872,7 +872,7 @@
                                   "globalPortRulesFromGroupPolicyNotMerged":  true,
                                   "connectionSecurityRulesFromGroupPolicyMerged":  false,
                                   "connectionSecurityRulesFromGroupPolicyNotMerged":  true,
-                                  "outboundConnectionsRequired":  false,
+                                  "outboundConnectionsRequired":  true,
                                   "outboundConnectionsBlocked":  true,
                                   "inboundConnectionsRequired":  false,
                                   "inboundConnectionsBlocked":  true,
@@ -981,7 +981,7 @@
                                            "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
                                            "deviceAndAppManagementAssignmentFilterId":  null,
                                            "deviceAndAppManagementAssignmentFilterType":  "none",
-                                           "groupId":  "Privileged Workstations"
+                                           "groupId":  "PAW-Local-Test"
                                        }
                         }
                     ]
