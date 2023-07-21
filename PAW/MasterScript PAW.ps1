@@ -9,51 +9,109 @@ See LICENSE in the project root for license information.
 # Determine script location for PowerShell
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 
-Function Set-AADAuth {
+function Test-MgAuth {
+
     <#
-    .SYNOPSIS
-    This function is used to authenticate with the Azure AD interface
-    .DESCRIPTION
-    The function authenticate with the Azure AD Interface with the tenant name
-    .EXAMPLE
-    Set-AADAuth
-    Authenticates you with the Azure AD interface
-    .NOTES
-    NAME: Set-AADAuth
-    #>
-    
+.SYNOPSIS
+This function is used to authenticate with the Graph API REST interface
+.DESCRIPTION
+The function authenticate with the Graph API Interface with the tenant name
+.EXAMPLE
+Test-MgAuth
+Authenticates you with the Graph API interface
+.NOTES
+NAME: Test-MgAuth
+#>
+
     [cmdletbinding()]
-    
+
     param
     (
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         $User
     )
-    
-    Write-Host "Checking for AzureAD module..."
-    
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
-    
-        if ($AadModule -eq $null) {
-            write-host
-            write-host "AzureAD Powershell module not installed..." -f Red
-            write-host "Attempting module install now" -f Red
-            Install-Module -Name AzureADPreview -AllowClobber -Force
-            #write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
-            #write-host "Script can't continue..." -f Red
-            write-host
-            #exit
-        }
-    
-        Connect-AzureAD -AccountId $user | Out-Null
-    
+
+    $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+
+    $tenant = $userUpn.Host
+
+    Write-Host "Checking for Microsoft Graph module..."
+
+    $MgModule = Get-Module -Name "Microsoft.Graph" -ListAvailable
+
+    if ($null -eq $MgModule) {
+        write-host
+        write-host "Microsoft Graph Powershell module not installed..." -f Red
+        write-host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
+        write-host "Script can't continue..." -f Red
+        write-host
+        
     }
+
+    $scopes = @()
+
+    #########################################
+    # Directory related scopes              #
+    #########################################
+    $scopes += @("Device.Read.All", 
+        "User.Read.All", 
+        "GroupMember.ReadWrite.All", 
+        "Group.ReadWrite.All", 
+        "Directory.ReadWrite.All")
+
+    #########################################
+    # Device Management scopes              #
+    #########################################
+    $scopes += @("DeviceManagementConfiguration.ReadWrite.All", 
+        "DeviceManagementServiceConfig.ReadWrite.All", 
+        "DeviceManagementRBAC.ReadWrite.All", 
+        "DeviceManagementManagedDevices.ReadWrite.All", 
+        "DeviceManagementApps.ReadWrite.All")
+
+
+    #$clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    #$redirectUri = "urn:ietf:wg:oauth:2.0:oob"
+
+    try {
+
+        Connect-MgGraph -Scopes $scopes -TenantId $tenant
+
+        #validate connected to proper tenant and account
+
+        $ctx = Get-MgContext
+        $org = Get-MgOrganization
+
+        $domains = $org.VerifiedDomains | select-object -ExpandProperty Name
+        if ($ctx.Account.ToLower() -ne $userUpn.Address.ToLower() -or ($ctx.TenantId -ne $org.Id) -or $domains -notcontains $tenant) {
+            write-host "Unable to verify tenant or account" -f Red
+            Disconnect-MgGraph
+            throw "Unable to continue due to validation"
+        }
+
+        # $authHeader = @{
+        #     'Content-Type'  = 'application/json'
+        #     'Authorization' = "Bearer " + $authResult.AccessToken
+        #     'ExpiresOn'     = $authResult.ExpiresOn
+        # }
+
+        # return $authHeader
+    }
+    catch {
+        write-host $_.Exception.Message -f Red
+        write-host $_.Exception.ItemName -f Red
+        write-host
+        break
+
+    }
+
+}
     
 ####################################################
     
-    $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
+    $User = Read-Host -Prompt "Please specify your user principal name for Microsoft Authentication"
+    
 
-    Set-AADAuth -user $user
+    Test-MgAuth -user $user
     
  ####################################################
     

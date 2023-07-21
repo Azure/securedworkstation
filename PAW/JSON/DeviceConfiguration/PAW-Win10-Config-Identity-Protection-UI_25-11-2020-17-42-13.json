@@ -15,7 +15,7 @@
     "version":  2,
     "useSecurityKeyForSignin":  true,
     "enhancedAntiSpoofingForFacialFeaturesEnabled":  true,
-    "pinMinimumLength":  8,
+    "pinMinimumLength":  6,
     "pinMaximumLength":  100,
     "pinUppercaseCharactersUsage":  "blocked",
     "pinLowercaseCharactersUsage":  "blocked",

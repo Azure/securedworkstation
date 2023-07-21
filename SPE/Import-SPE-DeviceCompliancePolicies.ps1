@@ -7,144 +7,103 @@ See LICENSE in the project root for license information.
 #>
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-$ImportPath = $ScriptDir+"\JSON\DeviceCompliance"
+$ImportPath = $ScriptDir + "\JSON\DeviceCompliance"
 
 
 ####################################################
 
-function Get-AuthToken {
+function Test-MgAuth {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to authenticate with the Graph API REST interface
 .DESCRIPTION
 The function authenticate with the Graph API Interface with the tenant name
 .EXAMPLE
-Get-AuthToken
+Test-MgAuth
 Authenticates you with the Graph API interface
 .NOTES
-NAME: Get-AuthToken
+NAME: Test-MgAuth
 #>
 
-[cmdletbinding()]
+    [cmdletbinding()]
 
-param
-(
-    [Parameter(Mandatory=$true)]
-    $User
-)
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        $User
+    )
 
-$userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+    $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
 
-$tenant = $userUpn.Host
+    $tenant = $userUpn.Host
 
-Write-Host "Checking for AzureAD module..."
+    Write-Host "Checking for Microsoft Graph module..."
 
-    $AadModule = Get-Module -Name "AzureAD" -ListAvailable
+    $MgModule = Get-Module -Name "Microsoft.Graph" -ListAvailable
 
-    if ($AadModule -eq $null) {
-
-        Write-Host "AzureAD PowerShell module not found, looking for AzureADPreview"
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
-
-    }
-
-    if ($AadModule -eq $null) {
+    if ($null -eq $MgModule) {
         write-host
-        write-host "AzureAD Powershell module not installed..." -f Red
-        write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
+        write-host "Microsoft Graph Powershell module not installed..." -f Red
+        write-host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
         write-host "Script can't continue..." -f Red
         write-host
-        exit
+        
     }
 
-# Getting path to ActiveDirectory Assemblies
-# If the module count is greater than 1 find the latest version
+    $scopes = @()
 
-    if($AadModule.count -gt 1){
+    #########################################
+    # Directory related scopes              #
+    #########################################
+    $scopes += @("Device.Read.All", 
+        "User.Read.All", 
+        "GroupMember.ReadWrite.All", 
+        "Group.ReadWrite.All", 
+        "Directory.ReadWrite.All")
 
-        $Latest_Version = ($AadModule | select version | Sort-Object)[-1]
+    #########################################
+    # Device Management scopes              #
+    #########################################
+    $scopes += @("DeviceManagementConfiguration.ReadWrite.All", 
+        "DeviceManagementServiceConfig.ReadWrite.All", 
+        "DeviceManagementRBAC.ReadWrite.All", 
+        "DeviceManagementManagedDevices.ReadWrite.All", 
+        "DeviceManagementApps.ReadWrite.All")
 
-        $aadModule = $AadModule | ? { $_.version -eq $Latest_Version.version }
 
-            # Checking if there are multiple versions of the same module found
-
-            if($AadModule.count -gt 1){
-
-            $aadModule = $AadModule | select -Unique
-
-            }
-
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
-
-    }
-
-    else {
-
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
-
-    }
-
-[System.Reflection.Assembly]::LoadFrom($adal) | Out-Null
-
-[System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
-
-$clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
-
-$redirectUri = "urn:ietf:wg:oauth:2.0:oob"
-
-$resourceAppIdURI = "https://graph.microsoft.com"
-
-$authority = "https://login.microsoftonline.com/$Tenant"
+    #$clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    #$redirectUri = "urn:ietf:wg:oauth:2.0:oob"
 
     try {
 
-    $authContext = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext" -ArgumentList $authority
+        Connect-MgGraph -Scopes $scopes -TenantId $tenant
 
-    # https://msdn.microsoft.com/en-us/library/azure/microsoft.identitymodel.clients.activedirectory.promptbehavior.aspx
-    # Change the prompt behaviour to force credentials each time: Auto, Always, Never, RefreshSession
+        #validate connected to proper tenant and account
 
-    $platformParameters = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.PlatformParameters" -ArgumentList "Auto"
+        $ctx = Get-MgContext
+        $org = Get-MgOrganization
 
-    $userId = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier" -ArgumentList ($User, "OptionalDisplayableId")
-
-    $authResult = $authContext.AcquireTokenAsync($resourceAppIdURI,$clientId,$redirectUri,$platformParameters,$userId).Result
-
-        # If the accesstoken is valid then create the authentication header
-
-        if($authResult.AccessToken){
-
-        # Creating header for Authorization token
-
-        $authHeader = @{
-            'Content-Type'='application/json'
-            'Authorization'="Bearer " + $authResult.AccessToken
-            'ExpiresOn'=$authResult.ExpiresOn
-            }
-
-        return $authHeader
-
+        $domains = $org.VerifiedDomains | select-object -ExpandProperty Name
+        if ($ctx.Account.ToLower() -ne $userUpn.Address.ToLower() -or ($ctx.TenantId -ne $org.Id) -or $domains -notcontains $tenant) {
+            write-host "Unable to verify tenant or account" -f Red
+            Disconnect-MgGraph
+            throw "Unable to continue due to validation"
         }
 
-        else {
+        # $authHeader = @{
+        #     'Content-Type'  = 'application/json'
+        #     'Authorization' = "Bearer " + $authResult.AccessToken
+        #     'ExpiresOn'     = $authResult.ExpiresOn
+        # }
 
-        Write-Host
-        Write-Host "Authorization Access Token is null, please re-run authentication..." -ForegroundColor Red
-        Write-Host
-        break
-
-        }
-
+        # return $authHeader
     }
-
     catch {
-
-    write-host $_.Exception.Message -f Red
-    write-host $_.Exception.ItemName -f Red
-    write-host
-    break
+        write-host $_.Exception.Message -f Red
+        write-host $_.Exception.ItemName -f Red
+        write-host
+        break
 
     }
 
@@ -152,7 +111,7 @@ $authority = "https://login.microsoftonline.com/$Tenant"
 
 ####################################################
 
-Function Add-DeviceCompliancePolicy(){
+Function Add-DeviceCompliancePolicy() {
 
     <#
     .SYNOPSIS
@@ -176,42 +135,39 @@ Function Add-DeviceCompliancePolicy(){
     $graphApiVersion = "Beta"
     $Resource = "deviceManagement/deviceCompliancePolicies"
         
-        try {
+    try {
     
-            if($JSON -eq "" -or $JSON -eq $null){
+        if ($JSON -eq "" -or $null -eq $JSON) {
     
             write-host "No JSON specified, please specify valid JSON for the iOS Policy..." -f Red
     
-            }
+        }
     
-            else {
+        else {
     
             Test-JSON -JSON $JSON
     
             $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
-            Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
-            }
+            Invoke-MgGraphRequest -Uri $uri -Method Post -Body $JSON -ContentType "application/json"
         }
-        catch {
+    }
+    catch {
         $ex = $_.Exception
-        $errorResponse = $ex.Response.GetResponseStream()
-        $reader = New-Object System.IO.StreamReader($errorResponse)
-        $reader.BaseStream.Position = 0
-        $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
-        Write-Host "Response content:`n$responseBody" -f Red
+        
+
+        Write-Host "Response content:`n$($ex.Response.Content.ReadAsStringAsync().Result)" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
         write-host
         break
-        }
     }
+}
     
 ####################################################
 
 
-Function Get-AADGroup(){
+Function Get-AADGroup() {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to get AAD Groups from the Graph API REST interface
 .DESCRIPTION
@@ -223,65 +179,65 @@ Returns all users registered with Azure AD
 NAME: Get-AADGroup
 #>
 
-[cmdletbinding()]
+    [cmdletbinding()]
 
-param
-(
-    $GroupName,
-    $id,
-    [switch]$Members
-)
+    param
+    (
+        $GroupName,
+        $id,
+        [switch]$Members
+    )
 
-# Defining Variables
-$graphApiVersion = "v1.0"
-$Group_resource = "groups"
-# pseudo-group identifiers for all users and all devices
-[string]$AllUsers   = "acacacac-9df4-4c7d-9d50-4ef0226f57a9"
-[string]$AllDevices = "adadadad-808e-44e2-905a-0b7873a8a531"
+    # Defining Variables
+    $graphApiVersion = "v1.0"
+    $Group_resource = "groups"
+    # pseudo-group identifiers for all users and all devices
+    [string]$AllUsers = "acacacac-9df4-4c7d-9d50-4ef0226f57a9"
+    [string]$AllDevices = "adadadad-808e-44e2-905a-0b7873a8a531"
 
     try {
 
-        if($id){
+        if ($id) {
 
-        $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=id eq '$id'"
-        switch ( $id ) {
-                $AllUsers   { $grp = [PSCustomObject]@{ displayName = "All users"}; $grp           }
-                $AllDevices { $grp = [PSCustomObject]@{ displayName = "All devices"}; $grp         }
-                default     { (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value  }
-                }
+            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=id eq '$id'"
+            switch ( $id ) {
+                $AllUsers { $grp = [PSCustomObject]@{ displayName = "All users" }; $grp }
+                $AllDevices { $grp = [PSCustomObject]@{ displayName = "All devices" }; $grp }
+                default { (Invoke-MgGraphRequest -Uri $uri -Method Get).Value }
+            }
                 
         }
 
-        elseif($GroupName -eq "" -or $GroupName -eq $null){
+        elseif ($GroupName -eq "" -or $null -eq $GroupName) {
 
-        $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)"
-        (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
+            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)"
+        (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
 
         }
 
         else {
 
-            if(!$Members){
+            if (!$Members) {
 
-            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=displayname eq '$GroupName'"
-            (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
+                $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=displayname eq '$GroupName'"
+            (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
 
             }
 
-            elseif($Members){
+            elseif ($Members) {
 
-            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=displayname eq '$GroupName'"
-            $Group = (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
+                $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)?`$filter=displayname eq '$GroupName'"
+                $Group = (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
 
-                if($Group){
+                if ($Group) {
 
-                $GID = $Group.id
+                    $GID = $Group.id
 
-                $Group.displayName
-                write-host
+                    $Group.displayName
+                    write-host
 
-                $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)/$GID/Members"
-                (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
+                    $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)/$GID/Members"
+                (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
 
                 }
 
@@ -293,23 +249,20 @@ $Group_resource = "groups"
 
     catch {
 
-    $ex = $_.Exception
-    $errorResponse = $ex.Response.GetResponseStream()
-    $reader = New-Object System.IO.StreamReader($errorResponse)
-    $reader.BaseStream.Position = 0
-    $reader.DiscardBufferedData()
-    $responseBody = $reader.ReadToEnd();
-    Write-Host "Response content:`n$responseBody" -f Red
-    Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-    write-host
-    break
+        $ex = $_.Exception
+        
+
+        Write-Host "Response content:`n$($ex.Response.Content.ReadAsStringAsync().Result)" -f Red
+        Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
+        write-host
+        break
 
     }
 
 }
 
 ####################################################
-Function Get-DeviceCompliancePolicy(){
+Function Get-DeviceCompliancePolicy() {
 
     <#
     .SYNOPSIS
@@ -336,35 +289,32 @@ Function Get-DeviceCompliancePolicy(){
     $graphApiVersion = "Beta"
     $Resource = "deviceManagement/deviceCompliancePolicies"
         
-        try {
+    try {
     
-            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
-            (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value | Where-Object { ($_.'@odata.type').contains("windows10CompliancePolicy") -and ($_.'displayName').contains($Name) }
+        $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
+            (Invoke-MgGraphRequest -Uri $uri -Method Get).Value | Where-Object { ($_.'@odata.type').contains("windows10CompliancePolicy") -and ($_.'displayName').contains($Name) }
     
-        }
+    }
         
-        catch {
+    catch {
     
         $ex = $_.Exception
-        $errorResponse = $ex.Response.GetResponseStream()
-        $reader = New-Object System.IO.StreamReader($errorResponse)
-        $reader.BaseStream.Position = 0
-        $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
-        Write-Host "Response content:`n$responseBody" -f Red
+        
+
+        Write-Host "Response content:`n$($ex.Response.Content.ReadAsStringAsync().Result)" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
         write-host
         break
     
-        }
-    
     }
+    
+}
     
 
 
 ####################################################
 
-Function Add-DeviceCompliancePolicyAssignment(){
+Function Add-DeviceCompliancePolicyAssignment() {
 
     <#
     .SYNOPSIS
@@ -389,23 +339,23 @@ Function Add-DeviceCompliancePolicyAssignment(){
     $graphApiVersion = "v1.0"
     $Resource = "deviceManagement/deviceCompliancePolicies/$CompliancePolicyId/assign"
         
-        try {
+    try {
     
-            if(!$CompliancePolicyId){
+        if (!$CompliancePolicyId) {
     
             write-host "No Compliance Policy Id specified, specify a valid Compliance Policy Id" -f Red
             break
     
-            }
+        }
     
-            if(!$ComplianceAssignments){
+        if (!$ComplianceAssignments) {
 
-                write-host "No Target Group Id specified, specify a valid Target Group Id" -f Red
-                break
+            write-host "No Target Group Id specified, specify a valid Target Group Id" -f Red
+            break
                 
-            }
+        }
     
-            $JSON = @"
+        $JSON = @"
 
 {
     "Assignments": [
@@ -417,31 +367,29 @@ Function Add-DeviceCompliancePolicyAssignment(){
         Write-Output $JSON
 
         $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
-        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
-    
-        }
+        Invoke-MgGraphRequest -Uri $uri -Method Post -Body $JSON -ContentType "application/json"
         
-        catch {
+    
+    }
+        
+    catch {
     
         $ex = $_.Exception
-        $errorResponse = $ex.Response.GetResponseStream()
-        $reader = New-Object System.IO.StreamReader($errorResponse)
-        $reader.BaseStream.Position = 0
-        $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
-        Write-Host "Response content:`n$responseBody" -f Red
+        
+
+        Write-Host "Response content:`n$($ex.Response.Content.ReadAsStringAsync().Result)" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
         write-host
         break
-        }
-    
     }
+    
+}
     
 ####################################################
 
-Function Test-JSON(){
+Function Test-JSON() {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to test if the JSON passed to a REST Post request is valid
 .DESCRIPTION
@@ -453,30 +401,30 @@ Test if the JSON is valid before calling the Graph REST interface
 NAME: Test-AuthHeader
 #>
 
-param (
+    param (
 
-$JSON
+        $JSON
 
-)
+    )
 
     try {
 
-    $TestJSON = ConvertFrom-Json $JSON -ErrorAction Stop
-    $validJson = $true
+        $TestJSON = ConvertFrom-Json $JSON -ErrorAction Stop
+        $validJson = $true
 
     }
 
     catch {
 
-    $validJson = $false
-    $_.Exception
+        $validJson = $false
+        $_.Exception
 
     }
 
-    if (!$validJson){
+    if (!$validJson) {
     
-    Write-Host "Provided JSON isn't in valid JSON format" -f Red
-    break
+        Write-Host "Provided JSON isn't in valid JSON format" -f Red
+        break
 
     }
 
@@ -488,63 +436,28 @@ $JSON
 
 write-host
 
-# Checking if authToken exists before running authentication
-if($global:authToken){
-
-    # Setting DateTime to Universal time to work in all timezones
-    $DateTime = (Get-Date).ToUniversalTime()
-
-    # If the authToken exists checking when it expires
-    $TokenExpires = ($authToken.ExpiresOn.datetime - $DateTime).Minutes
-
-        if($TokenExpires -le 0){
-
-        write-host "Authentication Token expired" $TokenExpires "minutes ago" -ForegroundColor Yellow
-        write-host
-
-            # Defining User Principal Name if not present
-
-            if($User -eq $null -or $User -eq ""){
-
-            $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
-            Write-Host
-
-            }
-
-        $global:authToken = Get-AuthToken -User $User
-
-        }
-}
-
-# Authentication doesn't exist, calling Get-AuthToken function
-
-else {
-
-    if($User -eq $null -or $User -eq ""){
+if ($null -eq $User -or $User -eq "") {
 
     $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
     Write-Host
 
-    }
-
-# Getting the authorization token
-$global:authToken = Get-AuthToken -User $User
-
 }
+
+Test-MgAuth -User $User
 
 #endregion
 
 ####################################################
 
 # Replacing quotes for Test-Path
-$ImportPath = $ImportPath.replace('"','')
+$ImportPath = $ImportPath.replace('"', '')
 
-if(!(Test-Path "$ImportPath")){
+if (!(Test-Path "$ImportPath")) {
 
-Write-Host "Import Path for JSON file doesn't exist..." -ForegroundColor Red
-Write-Host "Script can't continue..." -ForegroundColor Red
-Write-Host
-break
+    Write-Host "Import Path for JSON file doesn't exist..." -ForegroundColor Red
+    Write-Host "Script can't continue..." -ForegroundColor Red
+    Write-Host
+    break
 
 }
 
@@ -553,10 +466,10 @@ break
 Get-ChildItem $ImportPath -filter *.json |
 Foreach-object {
 
-    $JSON_Data = Get-Content $_.FullName | where { $_ -notmatch "scheduledActionConfigurations@odata.context"}
+    $JSON_Data = Get-Content $_.FullName | Where-Object { $_ -notmatch "scheduledActionConfigurations@odata.context" }
 
     # Excluding entries that are not required - id,createdDateTime,lastModifiedDateTime,version
-    $JSON_Convert = $JSON_Data | ConvertFrom-Json | Select-Object -Property * -ExcludeProperty id,createdDateTime,lastModifiedDateTime,scheduledActionsForRule@odata.context
+    $JSON_Convert = $JSON_Data | ConvertFrom-Json | Select-Object -Property * -ExcludeProperty id, createdDateTime, lastModifiedDateTime, scheduledActionsForRule@odata.context
 
     $DisplayName = $JSON_Convert.displayName
 
@@ -564,72 +477,70 @@ Foreach-object {
 
     #write-host $DuplicateCA
 
-        If ($DuplicateDCP -eq $null) {
+    If ($null -eq $DuplicateDCP) {
 
-            $JSON_Output = $JSON_Convert | ConvertTo-Json -Depth 10
+        $JSON_Output = $JSON_Convert | ConvertTo-Json -Depth 10
 
 
-            # Adding Scheduled Actions Rule to JSON
-            #$scheduledActionsForRule = '"scheduledActionsForRule":[{"ruleName":"PasswordRequired","scheduledActionConfigurations":[{"actionType":"block","gracePeriodHours":0,"notificationTemplateId":"","notificationMessageCCList":[]}]}]'        
+        # Adding Scheduled Actions Rule to JSON
+        #$scheduledActionsForRule = '"scheduledActionsForRule":[{"ruleName":"PasswordRequired","scheduledActionConfigurations":[{"actionType":"block","gracePeriodHours":0,"notificationTemplateId":"","notificationMessageCCList":[]}]}]'        
 
-            #$JSON_Output = $JSON_Output.trimend("}")
+        #$JSON_Output = $JSON_Output.trimend("}")
 
-            #$JSON_Output = $JSON_Output.TrimEnd() + "," + "`r`n"
+        #$JSON_Output = $JSON_Output.TrimEnd() + "," + "`r`n"
 
-            # Joining the JSON together
-            #$JSON_Output = $JSON_Output + $scheduledActionsForRule + "`r`n" + "}"
+        # Joining the JSON together
+        #$JSON_Output = $JSON_Output + $scheduledActionsForRule + "`r`n" + "}"
             
-            write-host
-            write-host "Device Configuration Policy '$DisplayName' Found..." -ForegroundColor Yellow
-            write-host
-            $JSON_Output
-            write-host
-            Write-Host "Adding Device Configuration Policy '$DisplayName'" -ForegroundColor Yellow
+        write-host
+        write-host "Device Configuration Policy '$DisplayName' Found..." -ForegroundColor Yellow
+        write-host
+        $JSON_Output
+        write-host
+        Write-Host "Adding Device Configuration Policy '$DisplayName'" -ForegroundColor Yellow
 
-            Add-DeviceCompliancePolicy -JSON $JSON_Output
+        Add-DeviceCompliancePolicy -JSON $JSON_Output
 
-            $DCPProfile = Get-DeviceCompliancePolicy -name $DisplayName
+        $DCPProfile = Get-DeviceCompliancePolicy -name $DisplayName
 
-            $CompliancePolicyId = $DCPProfile.id
+        $CompliancePolicyId = $DCPProfile.id
 
-            Write-Host "Device Configuration Policy ID '$CompliancePolicyId'" -ForegroundColor Yellow
-            Write-Host
-            $AADGroups = $JSON_Convert.assignments.target
+        Write-Host "Device Configuration Policy ID '$CompliancePolicyId'" -ForegroundColor Yellow
+        Write-Host
+        $AADGroups = $JSON_Convert.assignments.target
 
-            $ComplianceAssignments = @()
+        $ComplianceAssignments = @()
 
-            foreach ($AADGroup in $AADGroups ) 
+        foreach ($AADGroup in $AADGroups ) 
 
-                        
-                {
-                    Write-Host "AAD Group Name:" $AADGroup.groupId -ForegroundColor Yellow
-                    Write-Host "Assignment Type:" $AADGroup."@OData.type" -ForegroundColor Yellow
-                    $TargetGroupId = (Get-AADGroup -GroupName $AADGroup.groupid)
-                    $TargetGroupId = $TargetGroupId.id
-                    Write-Host "Included Group ID:" $TargetGroupID -ForegroundColor Yellow
+        {
+            Write-Host "AAD Group Name:" $AADGroup.groupId -ForegroundColor Yellow
+            Write-Host "Assignment Type:" $AADGroup."@OData.type" -ForegroundColor Yellow
+            $TargetGroupId = (Get-AADGroup -GroupName $AADGroup.groupid)
+            $TargetGroupId = $TargetGroupId.id
+            Write-Host "Included Group ID:" $TargetGroupID -ForegroundColor Yellow
 
-                $Assignment = $AADGroup."@OData.type"                           
-                $GroupAdd = @"
+            $Assignment = $AADGroup."@OData.type"                           
+            $GroupAdd = @"
      {
             "target": {
-            "@odata.type": "#microsoft.graph.$Assignment",
+            "@odata.type": "$Assignment",
             "groupId": "$TargetGroupId"
                         }
        },
 
 "@
                 
-                $ComplianceAssignments += $GroupAdd
-            }
+            $ComplianceAssignments += $GroupAdd
+        }
                
-            Add-DeviceCompliancePolicyAssignment -ComplianceAssignments $ComplianceAssignments -CompliancePolicyId $CompliancePolicyId
+        Add-DeviceCompliancePolicyAssignment -ComplianceAssignments $ComplianceAssignments -CompliancePolicyId $CompliancePolicyId
                   
-        }          
+    }          
 
     else 
-    
-        {
+    {
         write-host "Device Compliance Policy:" $JSON_Convert.displayName "has already been created" -ForegroundColor Yellow
-        }
+    }
 
 }   

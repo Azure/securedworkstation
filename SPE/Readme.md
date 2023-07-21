@@ -4,7 +4,7 @@ The scripts for configuring the Specialized security baseline are located in thi
 Before the scripts can be run install Azure AD powershell module on your device
 
 ```powershell
-Import-Module AzureAD -force
+Import-Module Microsoft.Graph -force
 ```
 and allow scripts to run on your device;
 ```powershell

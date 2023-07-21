@@ -43,15 +43,6 @@
                         },
                         {
                             "@odata.type":  "#microsoft.graph.omaSettingInteger",
-                            "displayName":  "LanmanWorkstation/EnableInsecureGuestLogons",
-                            "description":  "EnableInsecureGuestLogons",
-                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/EnableInsecureGuestLogons",
-                            "isEncrypted":  false,
-                            "value":  0,
-                            "isReadOnly":  false
-                        },
-                        {
-                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
                             "displayName":  "Games/AllowAdvancedGamingServices",
                             "description":  "AllowAdvancedGamingServices",
                             "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Games/AllowAdvancedGamingServices",
@@ -69,38 +60,12 @@
                             "isReadOnly":  false
                         },
                         {
-                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
-                            "displayName":  "SystemServices/ConfigureHomeGroupListenerServiceStartupMode",
-                            "description":  "ConfigureHomeGroupListenerServiceStartupMode",
-                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/SystemServices/ConfigureHomeGroupListenerServiceStartupMode",
-                            "isEncrypted":  false,
-                            "value":  4,
-                            "isReadOnly":  false
-                        },
-                        {
-                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
-                            "displayName":  "SystemServices/ConfigureHomeGroupProviderServiceStartupMode",
-                            "description":  "ConfigureHomeGroupProviderServiceStartupMode",
-                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/SystemServices/ConfigureHomeGroupProviderServiceStartupMode",
-                            "isEncrypted":  false,
-                            "value":  4,
-                            "isReadOnly":  false
-                        },
-                        {
                             "@odata.type":  "#microsoft.graph.omaSettingString",
                             "displayName":  "ErrorReporting/DisableWindowsErrorReporting",
                             "description":  "DisableWindowsErrorReporting",
                             "omaUri":  "./Device/Vendor/MSFT/Policy/Config/ErrorReporting/DisableWindowsErrorReporting",
                             "isEncrypted":  false,
                             "value":  " \u003cenabled/\u003e"
-                        },
-                        {
-                            "@odata.type":  "#microsoft.graph.omaSettingString",
-                            "displayName":  "Power/AllowStandbyWhenSleepingPluggedIn",
-                            "description":  "AllowStandbyWhenSleepingPluggedIn",
-                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Power/AllowStandbyWhenSleepingPluggedIn",
-                            "isEncrypted":  false,
-                            "value":  "\u003cdisabled/\u003e"
                         },
                         {
                             "@odata.type":  "#microsoft.graph.omaSettingString",
@@ -389,15 +354,6 @@
                             "displayName":  "DeviceGuard/ConfigureSystemGuardLaunch",
                             "description":  "ConfigureSystemGuardLaunch",
                             "omaUri":  "./Vendor/MSFT/Policy/Config/DeviceGuard/ConfigureSystemGuardLaunch",
-                            "isEncrypted":  false,
-                            "value":  1,
-                            "isReadOnly":  false
-                        },
-                        {
-                            "@odata.type":  "#microsoft.graph.omaSettingInteger",
-                            "displayName":  "Start/HideSleep",
-                            "description":  "HideSleep",
-                            "omaUri":  "./Device/Vendor/MSFT/Policy/Config/Start/HideSleep",
                             "isEncrypted":  false,
                             "value":  1,
                             "isReadOnly":  false
