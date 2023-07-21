@@ -981,7 +981,7 @@
                                            "@odata.type":  "#microsoft.graph.groupAssignmentTarget",
                                            "deviceAndAppManagementAssignmentFilterId":  null,
                                            "deviceAndAppManagementAssignmentFilterType":  "none",
-                                           "groupId":  "PAW-Local-Test"
+                                           "groupId":  "Privileged Workstations"
                                        }
                         }
                     ]
