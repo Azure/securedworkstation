@@ -198,7 +198,7 @@ Function Create-GroupPolicyConfigurationsDefinitionValues() {
 	$DCP_resource = "deviceManagement/groupPolicyConfigurations/$($GroupPolicyConfigurationID)/definitionValues"
 	write-host $DCP_resource
 	try {
-		if ($JSON -eq "" -or $JSON -eq $null) {
+		if ($JSON -eq "" -or $null -eq $JSON) {
 				
 			write-host "No JSON specified, please specify valid JSON for the Device Configuration Policy..." -f Red
 				
@@ -403,7 +403,7 @@ NAME: Get-AADGroup
                 
 		}
 
-		elseif ($GroupName -eq "" -or $GroupName -eq $null) {
+		elseif ($GroupName -eq "" -or $null -eq $GroupName) {
 
 			$uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)"
         (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
@@ -508,7 +508,7 @@ NAME: Test-AuthHeader
 write-host
 	
 # Defining User Principal Name if not present
-if ($User -eq $null -or $User -eq "") {
+if ($null -eq $User -or $User -eq "") {
 			
 	$User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
 	Write-Host
@@ -540,7 +540,7 @@ if (!(Test-Path "$ImportPath")) {
 
 $TargetGroupId = (Get-AADGroup | Where-Object { $_.displayName -eq $AADGroup }).id
 
-if ($TargetGroupId -eq $null -or $TargetGroupId -eq "") {
+if ($null -eq $TargetGroupId -or $TargetGroupId -eq "") {
 
 	Write-Host "AAD Group - '$AADGroup' doesn't exist, please specify a valid AAD Group..." -ForegroundColor Red
 	Write-Host

@@ -4,7 +4,7 @@ The scripts for configuring the Privileged security baseline are located in this
 Before the scripts can be run install Azure AD powershell module on your device
 
 ```powershell
-Import-Module AzureAD -force
+Import-Module Microsoft.Graph -force
 ```
 and allow scripts to run on your device;
 ```powershell

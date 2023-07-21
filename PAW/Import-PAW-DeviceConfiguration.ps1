@@ -138,7 +138,7 @@ NAME: Add-DeviceConfigurationPolicy
 
     try {
 
-        if ($JSON -eq "" -or $JSON -eq $null) {
+        if ($JSON -eq "" -or $null -eq $JSON) {
 
             write-host "No JSON specified, please specify valid JSON for the Policy..." -f Red
 
@@ -351,7 +351,7 @@ NAME: Get-AADGroup
                 
         }
 
-        elseif ($GroupName -eq "" -or $GroupName -eq $null) {
+        elseif ($GroupName -eq "" -or $null -eq $GroupName) {
 
             $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)"
         (Invoke-MgGraphRequest -Uri $uri -Method Get).Value
@@ -454,7 +454,7 @@ NAME: Test-AuthHeader
 
 write-host
 
-if ($User -eq $null -or $User -eq "") {
+if ($null -eq $User -or $User -eq "") {
 
     $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
     Write-Host
