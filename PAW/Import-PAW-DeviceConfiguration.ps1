@@ -38,58 +38,51 @@ $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
 
 $tenant = $userUpn.Host
 
-Write-Host "Checking for AzureAD module..."
+Write-Host "Checking for Microsoft Graph module..."
 
-    $AadModule = Get-Module -Name "AzureAD" -ListAvailable
+    $MgModule = Get-Module -Name "Microsoft.Graph" -ListAvailable
 
-    if ($AadModule -eq $null) {
-
-        Write-Host "AzureAD PowerShell module not found, looking for AzureADPreview"
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
-
-    }
-
-    if ($AadModule -eq $null) {
+    if ($null -eq $MgModule) {
         write-host
-        write-host "AzureAD Powershell module not installed..." -f Red
-        write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
+        write-host "Microsoft Graph Powershell module not installed..." -f Red
+        write-host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
         write-host "Script can't continue..." -f Red
         write-host
         exit
     }
 
-# Getting path to ActiveDirectory Assemblies
-# If the module count is greater than 1 find the latest version
+# # Getting path to ActiveDirectory Assemblies
+# # If the module count is greater than 1 find the latest version
 
-    if($AadModule.count -gt 1){
+#     if($AadModule.count -gt 1){
 
-        $Latest_Version = ($AadModule | select version | Sort-Object)[-1]
+#         $Latest_Version = ($AadModule | select version | Sort-Object)[-1]
 
-        $aadModule = $AadModule | ? { $_.version -eq $Latest_Version.version }
+#         $aadModule = $AadModule | ? { $_.version -eq $Latest_Version.version }
 
-            # Checking if there are multiple versions of the same module found
+#             # Checking if there are multiple versions of the same module found
 
-            if($AadModule.count -gt 1){
+#             if($AadModule.count -gt 1){
 
-            $aadModule = $AadModule | select -Unique
+#             $aadModule = $AadModule | select -Unique
 
-            }
+#             }
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+#         $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
+#         $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
 
-    }
+#     }
 
-    else {
+#     else {
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+#         $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
+#         $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
 
-    }
+#     }
 
-[System.Reflection.Assembly]::LoadFrom($adal) | Out-Null
+# [System.Reflection.Assembly]::LoadFrom($adal) | Out-Null
 
-[System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
+# [System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
 
 $clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
 

@@ -29,29 +29,29 @@ Function Set-AADAuth {
         #[Parameter(Mandatory=$true)]
         $User
     )
+    $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+
+    Write-Host "Checking for Microsoft Graph module..."
     
-    Write-Host "Checking for AzureAD module..."
+        $MgModule = Get-Module -Name "Microsoft.Graph" -ListAvailable
     
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
-    
-        if ($AadModule -eq $null) {
+        if ($null -eq $MgModule) {
             write-host
-            write-host "AzureAD Powershell module not installed..." -f Red
+            write-host "Microsoft Graph Powershell module not installed..." -f Red
             write-host "Attempting module install now" -f Red
-            Install-Module -Name AzureADPreview -AllowClobber -Force
-            #write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
-            #write-host "Script can't continue..." -f Red
+            Install-Module -Name Microsoft.Graph -AllowClobber -Force
             write-host
-            #exit
         }
-    
-        Connect-AzureAD -AccountId $user | Out-Null
-    
+
+        $tenant = $userUpn.Host
+        
+        Connect-MgGraph -TenantId $tenant
     }
     
 ####################################################
     
-    $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
+    $User = Read-Host -Prompt "Please specify your user principal name for Microsoft Authentication"
+    
 
     Set-AADAuth -user $user
     
