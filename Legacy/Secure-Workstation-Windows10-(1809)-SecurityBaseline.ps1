@@ -2,19 +2,19 @@
 #
 .SYNOPSIS
 This is a script steps up the secure workstation enforcement. It moves the Enhanced baseline to full blocking security model
-It is recommended to use the Ehanced baselie, and the 
-DeviceConfiguration_NCSC Baseline: https://www.ncsc.gov.uk/guidance/eud-guidance-windows-10-1803-mobile-device-management 
+It is recommended to use the Ehanced baselie, and the
+DeviceConfiguration_NCSC Baseline: https://www.ncsc.gov.uk/guidance/eud-guidance-windows-10-1803-mobile-device-management
 prior to enabling this set of controls. THESE CONTROLS ARE EXTREAMLY RESTRICTIVE TO THE HOST.
 
 
 .NOTES
     FileName:    Secure Workstation - Windows10 (1809) SecurityBaseline.ps1
-    Author:      Per Larsen 
+    Author:      Per Larsen
 	Revised:     Frank Simorjay
     Created:     03-09-2018
 	Revised:     05-09-2019
     Version:     1.1 hardended
-    
+
 #>
 ###################################################################################################
 <#
@@ -29,7 +29,7 @@ See LICENSE in the project root for license information.
 
 function Get-AuthToken {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to authenticate with the Graph API REST interface
 .DESCRIPTION
@@ -41,114 +41,114 @@ Authenticates you with the Graph API interface
 NAME: Get-AuthToken
 #>
 
-[cmdletbinding()]
+    [CmdletBinding()]
 
-param
-(
-    [Parameter(Mandatory=$true)]
-    $User
-)
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        $User
+    )
 
-$userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+    $userUpn = New-Object 'System.Net.Mail.MailAddress' -ArgumentList $User
 
-$tenant = $userUpn.Host
+    $tenant = $userUpn.Host
 
-Write-Host "Checking for AzureAD module..."
+    Write-Host 'Checking for AzureAD module...'
 
-    $AadModule = Get-Module -Name "AzureAD" -ListAvailable
+    $AadModule = Get-Module -Name 'AzureAD' -ListAvailable
 
     if ($AadModule -eq $null) {
 
-        Write-Host "AzureAD PowerShell module not found, looking for AzureADPreview"
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
+        Write-Host 'AzureAD PowerShell module not found, looking for AzureADPreview'
+        $AadModule = Get-Module -Name 'AzureADPreview' -ListAvailable
 
     }
 
     if ($AadModule -eq $null) {
-        write-host
-        write-host "AzureAD Powershell module not installed..." -f Red
-        write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
-        write-host "Script can't continue..." -f Red
-        write-host
+        Write-Host
+        Write-Host 'AzureAD Powershell module not installed...' -f Red
+        Write-Host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
+        Write-Host "Script can't continue..." -f Red
+        Write-Host
         exit
     }
 
-# Getting path to ActiveDirectory Assemblies
-# If the module count is greater than 1 find the latest version
+    # Getting path to ActiveDirectory Assemblies
+    # If the module count is greater than 1 find the latest version
 
-    if($AadModule.count -gt 1){
+    if ($AadModule.count -gt 1) {
 
-        $Latest_Version = ($AadModule | select version | Sort-Object)[-1]
+        $Latest_Version = ($AadModule | Select-Object version | Sort-Object)[-1]
 
-        $aadModule = $AadModule | ? { $_.version -eq $Latest_Version.version }
+        $aadModule = $AadModule | Where-Object { $_.version -eq $Latest_Version.version }
 
-            # Checking if there are multiple versions of the same module found
+        # Checking if there are multiple versions of the same module found
 
-            if($AadModule.count -gt 1){
+        if ($AadModule.count -gt 1) {
 
-            $aadModule = $AadModule | select -Unique
+            $aadModule = $AadModule | Select-Object -Unique
 
-            }
+        }
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+        $adal = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.dll'
+        $adalforms = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll'
 
     }
 
     else {
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+        $adal = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.dll'
+        $adalforms = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll'
 
     }
 
-[System.Reflection.Assembly]::LoadFrom($adal) | Out-Null
+    [System.Reflection.Assembly]::LoadFrom($adal) | Out-Null
 
-[System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
+    [System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
 
-$clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    $clientId = 'd1ddf0e4-d672-4dae-b554-9d5bdfd93547'
 
-$redirectUri = "urn:ietf:wg:oauth:2.0:oob"
+    $redirectUri = 'urn:ietf:wg:oauth:2.0:oob'
 
-$resourceAppIdURI = "https://graph.microsoft.com"
+    $resourceAppIdURI = 'https://graph.microsoft.com'
 
-$authority = "https://login.microsoftonline.com/$Tenant"
+    $authority = "https://login.microsoftonline.com/$Tenant"
 
     try {
 
-    $authContext = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext" -ArgumentList $authority
+        $authContext = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext' -ArgumentList $authority
 
-    # https://msdn.microsoft.com/en-us/library/azure/microsoft.identitymodel.clients.activedirectory.promptbehavior.aspx
-    # Change the prompt behaviour to force credentials each time: Auto, Always, Never, RefreshSession
+        # https://msdn.microsoft.com/en-us/library/azure/microsoft.identitymodel.clients.activedirectory.promptbehavior.aspx
+        # Change the prompt behaviour to force credentials each time: Auto, Always, Never, RefreshSession
 
-    $platformParameters = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.PlatformParameters" -ArgumentList "Auto"
+        $platformParameters = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.PlatformParameters' -ArgumentList 'Auto'
 
-    $userId = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier" -ArgumentList ($User, "OptionalDisplayableId")
+        $userId = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier' -ArgumentList ($User, 'OptionalDisplayableId')
 
-    $authResult = $authContext.AcquireTokenAsync($resourceAppIdURI,$clientId,$redirectUri,$platformParameters,$userId).Result
+        $authResult = $authContext.AcquireTokenAsync($resourceAppIdURI, $clientId, $redirectUri, $platformParameters, $userId).Result
 
         # If the accesstoken is valid then create the authentication header
 
-        if($authResult.AccessToken){
+        if ($authResult.AccessToken) {
 
-        # Creating header for Authorization token
+            # Creating header for Authorization token
 
-        $authHeader = @{
-            'Content-Type'='application/json'
-            'Authorization'="Bearer " + $authResult.AccessToken
-            'ExpiresOn'=$authResult.ExpiresOn
+            $authHeader = @{
+                'Content-Type'  = 'application/json'
+                'Authorization' = 'Bearer ' + $authResult.AccessToken
+                'ExpiresOn'     = $authResult.ExpiresOn
             }
 
-        return $authHeader
+            return $authHeader
 
         }
 
         else {
 
-        Write-Host
-        Write-Host "Authorization Access Token is null, please re-run authentication..." -ForegroundColor Red
-        Write-Host
-        break
+            Write-Host
+            Write-Host 'Authorization Access Token is null, please re-run authentication...' -ForegroundColor Red
+            Write-Host
+            break
 
         }
 
@@ -156,10 +156,10 @@ $authority = "https://login.microsoftonline.com/$Tenant"
 
     catch {
 
-    write-host $_.Exception.Message -f Red
-    write-host $_.Exception.ItemName -f Red
-    write-host
-    break
+        Write-Host $_.Exception.Message -f Red
+        Write-Host $_.Exception.ItemName -f Red
+        Write-Host
+        break
 
     }
 
@@ -167,9 +167,9 @@ $authority = "https://login.microsoftonline.com/$Tenant"
 
 ####################################################
 
-Function Add-DeviceConfigurationPolicy(){
+Function Add-DeviceConfigurationPolicy() {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to add an device configuration policy using the Graph API REST interface
 .DESCRIPTION
@@ -181,31 +181,31 @@ Adds a device configuration policy in Intune
 NAME: Add-DeviceConfigurationPolicy
 #>
 
-[cmdletbinding()]
+    [CmdletBinding()]
 
-param
-(
-    $JSON
-)
+    param
+    (
+        $JSON
+    )
 
-$graphApiVersion = "Beta"
-$DCP_resource = "deviceManagement/deviceConfigurations"
-Write-Verbose "Resource: $DCP_resource"
+    $graphApiVersion = 'Beta'
+    $DCP_resource = 'deviceManagement/deviceConfigurations'
+    Write-Verbose "Resource: $DCP_resource"
 
     try {
 
-        if($JSON -eq "" -or $JSON -eq $null){
+        if ([string]::IsNullOrWhiteSpace($JSON)) {
 
-        write-host "No JSON specified, please specify valid JSON for the Android Policy..." -f Red
+            Write-Host 'No JSON specified, please specify valid JSON for the Android Policy...' -f Red
 
         }
 
         else {
 
-        Test-JSON -JSON $JSON
+            Test-Json -Json $JSON
 
-        $uri = "https://graph.microsoft.com/$graphApiVersion/$($DCP_resource)"
-        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
+            $uri = "https://graph.microsoft.com/$graphApiVersion/$($DCP_resource)"
+            Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType 'application/json'
 
         }
 
@@ -213,16 +213,16 @@ Write-Verbose "Resource: $DCP_resource"
 
     catch {
 
-    $ex = $_.Exception
-    $errorResponse = $ex.Response.GetResponseStream()
-    $reader = New-Object System.IO.StreamReader($errorResponse)
-    $reader.BaseStream.Position = 0
-    $reader.DiscardBufferedData()
-    $responseBody = $reader.ReadToEnd();
-    Write-Host "Response content:`n$responseBody" -f Red
-    Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-    write-host
-    break
+        $ex = $_.Exception
+        $errorResponse = $ex.Response.GetResponseStream()
+        $reader = New-Object System.IO.StreamReader($errorResponse)
+        $reader.BaseStream.Position = 0
+        $reader.DiscardBufferedData()
+        $responseBody = $reader.ReadToEnd()
+        Write-Host "Response content:`n$responseBody" -f Red
+        Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
+        Write-Host
+        break
 
     }
 
@@ -230,9 +230,9 @@ Write-Verbose "Resource: $DCP_resource"
 
 ####################################################
 
-Function Test-JSON(){
+Function Test-JSON() {
 
-<#
+    <#
 .SYNOPSIS
 This function is used to test if the JSON passed to a REST Post request is valid
 .DESCRIPTION
@@ -244,30 +244,30 @@ Test if the JSON is valid before calling the Graph REST interface
 NAME: Test-AuthHeader
 #>
 
-param (
+    param (
 
-$JSON
+        $JSON
 
-)
+    )
 
     try {
 
-    $TestJSON = ConvertFrom-Json $JSON -ErrorAction Stop
-    $validJson = $true
+        $TestJSON = ConvertFrom-Json $JSON -ErrorAction Stop
+        $validJson = $true
 
     }
 
     catch {
 
-    $validJson = $false
-    $_.Exception
+        $validJson = $false
+        $_.Exception
 
     }
 
-    if (!$validJson){
+    if (!$validJson) {
 
-    Write-Host "Provided JSON isn't in valid JSON format" -f Red
-    break
+        Write-Host "Provided JSON isn't in valid JSON format" -f Red
+        break
 
     }
 
@@ -276,7 +276,7 @@ $JSON
 
 ####################################################
 
-Function Add-DeviceCompliancePolicybaseline(){
+Function Add-DeviceCompliancePolicybaseline() {
 
     <#
     .SYNOPSIS
@@ -289,62 +289,62 @@ Function Add-DeviceCompliancePolicybaseline(){
     .NOTES
     NAME: Add-DeviceCompliancePolicy
     #>
-    
-    [cmdletbinding()]
-    
+
+    [CmdletBinding()]
+
     param
     (
         $JSON
     )
-    
-    $graphApiVersion = "Beta"
-    $Resource = "deviceManagement/deviceCompliancePolicies"
-        
-        try {
-    
-            if($JSON -eq "" -or $JSON -eq $null){
-    
-            write-host "No JSON specified, please specify valid JSON for the iOS Policy..." -f Red
-    
-            }
-    
-            else {
-    
-            Test-JSON -JSON $JSON
-    
-            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
-            Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
-    
-            }
-    
+
+    $graphApiVersion = 'Beta'
+    $Resource = 'deviceManagement/deviceCompliancePolicies'
+
+    try {
+
+        if ([string]::IsNullOrWhiteSpace($JSON)) {
+
+            Write-Host 'No JSON specified, please specify valid JSON for the iOS Policy...' -f Red
+
         }
-        
-        catch {
-    
+
+        else {
+
+            Test-Json -Json $JSON
+
+            $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
+            Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType 'application/json'
+
+        }
+
+    }
+
+    catch {
+
         $ex = $_.Exception
         $errorResponse = $ex.Response.GetResponseStream()
         $reader = New-Object System.IO.StreamReader($errorResponse)
         $reader.BaseStream.Position = 0
         $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
+        $responseBody = $reader.ReadToEnd()
         Write-Host "Response content:`n$responseBody" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-        write-host
+        Write-Host
         break
-    
-        }
-    
+
     }
-    
-    ####################################################
+
+}
+
+####################################################
 ####################################################
 
 #region Authentication
 
-write-host
+Write-Host
 
 # Checking if authToken exists before running authentication
-if($global:authToken){
+if ($global:authToken) {
 
     # Setting DateTime to Universal time to work in all timezones
     $DateTime = (Get-Date).ToUniversalTime()
@@ -352,36 +352,36 @@ if($global:authToken){
     # If the authToken exists checking when it expires
     $TokenExpires = ($authToken.ExpiresOn.datetime - $DateTime).Minutes
 
-        if($TokenExpires -le 0){
+    if ($TokenExpires -le 0) {
 
-        write-host "Authentication Token expired" $TokenExpires "minutes ago" -ForegroundColor Yellow
-        write-host
+        Write-Host 'Authentication Token expired' $TokenExpires 'minutes ago' -ForegroundColor Yellow
+        Write-Host
 
-            # Defining User Principal Name if not present
+        # Defining User Principal Name if not present
 
-            if($User -eq $null -or $User -eq ""){
-           $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
+        if ([string]::IsNullOrWhiteSpace($User)) {
+            $User = Read-Host -Prompt 'Please specify your user principal name for Azure Authentication'
             Write-Host
 
-            }
+        }
 
         $global:authToken = Get-AuthToken -User $User
 
-        }
+    }
 }
 
 # Authentication doesn't exist, calling Get-AuthToken function
 
 else {
 
-    if($User -eq $null -or $User -eq ""){
-    $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
-    Write-Host
+    if ([string]::IsNullOrWhiteSpace($User)) {
+        $User = Read-Host -Prompt 'Please specify your user principal name for Azure Authentication'
+        Write-Host
 
     }
 
-# Getting the authorization token
-$global:authToken = Get-AuthToken -User $User
+    # Getting the authorization token
+    $global:authToken = Get-AuthToken -User $User
 
 }
 
@@ -391,7 +391,7 @@ $global:authToken = Get-AuthToken -User $User
 ####################################################
 #Jason Components
 ####################################################
-$Applocker = @"
+$Applocker = @'
 
 {
     "@odata.type":  "#microsoft.graph.windows10CustomConfiguration",
@@ -444,12 +444,12 @@ $Applocker = @"
                     ]
 }
 
-"@
+'@
 
 ####################################################
 
 
-$firewall = @"
+$firewall = @'
 
 
 {
@@ -774,12 +774,12 @@ $firewall = @"
                                           "blockCrossOrganizationWriteAccess":  true
                                       }
 }
-"@
+'@
 
 ####################################################
 
 
-$System1 = @"
+$System1 = @'
 
 {
     "@odata.type":  "#microsoft.graph.windows10GeneralConfiguration",
@@ -897,7 +897,7 @@ $System1 = @"
     "defenderScheduledScanTime":  null,
 
     "defenderScheduledQuickScanTime":  "23:00:00",
-    
+
     "defenderCloudBlockLevel":  "notConfigured",
     "defenderCloudExtendedTimeout":  null,
     "defenderCloudExtendedTimeoutInSeconds":  null,
@@ -918,7 +918,7 @@ $System1 = @"
     "passwordMinimumCharacterSetCount":  null,
 
     "passwordPreviousPasswordBlockCount":  21,
-    
+
     "passwordRequired":  true,
     "passwordRequireWhenResumeFromIdleState":  true,
     "passwordRequiredType":  "deviceDefault",
@@ -990,7 +990,7 @@ $System1 = @"
     "cortanaBlocked":  true,
     "deviceManagementBlockFactoryResetOnMobile":  false,
     "deviceManagementBlockManualUnenroll":  true,
-    
+
     "safeSearchFilter":  "strict",
 
     "edgeBlockPopups":  true,
@@ -1049,10 +1049,10 @@ $System1 = @"
     "appManagementMSIAllowUserControlOverInstall":  false,
     "appManagementMSIAlwaysInstallWithElevatedPrivileges":  false
 }
-"@
+'@
 
 ####################################################
-$System2 = @"
+$System2 = @'
 
 {
     "@odata.type":  "#microsoft.graph.windows10CustomConfiguration",
@@ -1231,7 +1231,7 @@ $System2 = @"
                             "omaUri":  "./Device/Vendor/MSFT/Policy/Config/MSSecurityGuide/EnableStructuredExceptionHandlingOverwriteProtection",
                             "value":  "\u003cenabled/\u003e"
                         },
-                       
+
                         {
                             "@odata.type":  "#microsoft.graph.omaSettingString",
                             "displayName":  "MS Security Guide - WDigest Authentication",
@@ -1326,10 +1326,10 @@ $System2 = @"
                         }
                     ]
 }
-"@
+'@
 
 ####################################################
-$User = @"
+$User = @'
 
 {
     "@odata.type":  "#microsoft.graph.windows10CustomConfiguration",
@@ -1349,11 +1349,11 @@ $User = @"
                     ]
 }
 
-"@
+'@
 ####################################################
 
 ####################################################
-$Baseline = @"
+$Baseline = @'
 
 {
     "@odata.type":  "#microsoft.graph.windows10CompliancePolicy",
@@ -1395,7 +1395,7 @@ $Baseline = @"
 }
 
 
-"@
+'@
 ####################################################
 
 Add-DeviceConfigurationPolicy -Json $Applocker # OK

@@ -7,7 +7,7 @@ See LICENSE in the project root for license information.
 #>
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-$ImportPath = $ScriptDir+"\Scripts\PAW-DeviceConfig.ps1"
+$ImportPath = $ScriptDir + '\Scripts\PAW-DeviceConfig.ps1'
 
 ####################################################
 
@@ -25,7 +25,7 @@ Authenticates you with the Graph API interface
 NAME: Get-AuthToken
 #>
 
-    [cmdletbinding()]
+    [CmdletBinding()]
 
     param
     (
@@ -33,27 +33,24 @@ NAME: Get-AuthToken
         $User
     )
 
-    $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+    $userUpn = New-Object 'System.Net.Mail.MailAddress' -ArgumentList $User
 
     $tenant = $userUpn.Host
 
-    Write-Host "Checking for AzureADPreview module..."
+    Write-Host 'Checking for AzureADPreview module...'
 
-    $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
+    $AadModule = Get-Module -Name 'AzureADPreview' -ListAvailable
 
-    if ($AadModule -eq $null) {
+    if ($null -eq $AadModule) {
 
-        Write-Host "AzureAD PowerShell module not found, looking for AzureADPreview"
-        $AadModule = Get-Module -Name "AzureADPreview" -ListAvailable
+        Write-Host 'AzureAD PowerShell module not found, looking for AzureADPreview'
+        $AadModule = Get-Module -Name 'AzureADPreview' -ListAvailable
 
-    }
-
-    if ($AadModule -eq $null) {
-        write-host
-        write-host "AzureAD Powershell module not installed..." -f Red
-        write-host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
-        write-host "Script can't continue..." -f Red
-        write-host
+        Write-Host
+        Write-Host 'AzureAD Powershell module not installed...' -f Red
+        Write-Host "Install by running 'Install-Module AzureAD' or 'Install-Module AzureADPreview' from an elevated PowerShell prompt" -f Yellow
+        Write-Host "Script can't continue..." -f Red
+        Write-Host
         exit
     }
 
@@ -62,27 +59,27 @@ NAME: Get-AuthToken
 
     if ($AadModule.count -gt 1) {
 
-        $Latest_Version = ($AadModule | select version | Sort-Object)[-1]
+        $Latest_Version = ($AadModule | Select-Object version | Sort-Object)[-1]
 
-        $aadModule = $AadModule | ? { $_.version -eq $Latest_Version.version }
+        $aadModule = $AadModule | Where-Object { $_.version -eq $Latest_Version.version }
 
         # Checking if there are multiple versions of the same module found
 
         if ($AadModule.count -gt 1) {
 
-            $aadModule = $AadModule | select -Unique
+            $aadModule = $AadModule | Select-Object -Unique
 
         }
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+        $adal = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.dll'
+        $adalforms = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll'
 
     }
 
     else {
 
-        $adal = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-        $adalforms = Join-Path $AadModule.ModuleBase "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"
+        $adal = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.dll'
+        $adalforms = Join-Path $AadModule.ModuleBase 'Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll'
 
     }
 
@@ -90,24 +87,24 @@ NAME: Get-AuthToken
 
     [System.Reflection.Assembly]::LoadFrom($adalforms) | Out-Null
 
-    $clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    $clientId = 'd1ddf0e4-d672-4dae-b554-9d5bdfd93547'
 
-    $redirectUri = "urn:ietf:wg:oauth:2.0:oob"
+    $redirectUri = 'urn:ietf:wg:oauth:2.0:oob'
 
-    $resourceAppIdURI = "https://graph.microsoft.com"
+    $resourceAppIdURI = 'https://graph.microsoft.com'
 
     $authority = "https://login.microsoftonline.com/$Tenant"
 
     try {
 
-        $authContext = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext" -ArgumentList $authority
+        $authContext = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext' -ArgumentList $authority
 
         # https://msdn.microsoft.com/en-us/library/azure/microsoft.identitymodel.clients.activedirectory.promptbehavior.aspx
         # Change the prompt behaviour to force credentials each time: Auto, Always, Never, RefreshSession
 
-        $platformParameters = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.PlatformParameters" -ArgumentList "Auto"
+        $platformParameters = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.PlatformParameters' -ArgumentList 'Auto'
 
-        $userId = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier" -ArgumentList ($User, "OptionalDisplayableId")
+        $userId = New-Object 'Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier' -ArgumentList ($User, 'OptionalDisplayableId')
 
         $authResult = $authContext.AcquireTokenAsync($resourceAppIdURI, $clientId, $redirectUri, $platformParameters, $userId).Result
 
@@ -119,7 +116,7 @@ NAME: Get-AuthToken
 
             $authHeader = @{
                 'Content-Type'  = 'application/json'
-                'Authorization' = "Bearer " + $authResult.AccessToken
+                'Authorization' = 'Bearer ' + $authResult.AccessToken
                 'ExpiresOn'     = $authResult.ExpiresOn
             }
 
@@ -130,7 +127,7 @@ NAME: Get-AuthToken
         else {
 
             Write-Host
-            Write-Host "Authorization Access Token is null, please re-run authentication..." -ForegroundColor Red
+            Write-Host 'Authorization Access Token is null, please re-run authentication...' -ForegroundColor Red
             Write-Host
             break
 
@@ -140,9 +137,9 @@ NAME: Get-AuthToken
 
     catch {
 
-        write-host $_.Exception.Message -f Red
-        write-host $_.Exception.ItemName -f Red
-        write-host
+        Write-Host $_.Exception.Message -f Red
+        Write-Host $_.Exception.ItemName -f Red
+        Write-Host
         break
 
     }
@@ -165,7 +162,7 @@ Adds a device management script from a URL in Intune
 .NOTES
 NAME: Add-DeviceManagementScript
 #>
-    [cmdletbinding()]
+    [CmdletBinding()]
     Param (
         # Path or URL to Powershell-script to add to Intune
         [Parameter(Mandatory = $true)]
@@ -178,7 +175,7 @@ NAME: Add-DeviceManagementScript
         [switch][bool]$URL = $false
     )
     if ($URL -eq $true) {
-        $FileName = $File -split "/"
+        $FileName = $File -split '/'
         $FileName = $FileName[-1]
         $OutFile = "$env:TEMP\$FileName"
         try {
@@ -201,7 +198,7 @@ NAME: Add-DeviceManagementScript
         }
         $FileName = Get-Item $File | Select-Object -ExpandProperty Name
     }
-    $B64File = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$File"));
+    $B64File = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$File"))
 
     if ($URL -eq $true) {
         Remove-Item $File -Force
@@ -223,13 +220,13 @@ NAME: Add-DeviceManagementScript
 }
 "@
 
-    $graphApiVersion = "Beta"
-    $DMS_resource = "deviceManagement/deviceManagementScripts"
+    $graphApiVersion = 'Beta'
+    $DMS_resource = 'deviceManagement/deviceManagementScripts'
     Write-Verbose "Resource: $DMS_resource"
 
     try {
         $uri = "https://graph.microsoft.com/$graphApiVersion/$DMS_resource"
-        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
+        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType 'application/json'
     }
 
     catch {
@@ -239,10 +236,10 @@ NAME: Add-DeviceManagementScript
         $reader = New-Object System.IO.StreamReader($errorResponse)
         $reader.BaseStream.Position = 0
         $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
+        $responseBody = $reader.ReadToEnd()
         Write-Host "Response content:`n$responseBody" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-        write-host
+        Write-Host
         break
 
     }
@@ -264,7 +261,7 @@ Adds a device configuration policy assignment in Intune
 NAME: Add-DeviceConfigurationPolicyAssignment
 #>
 
-    [cmdletbinding()]
+    [CmdletBinding()]
 
     param
     (
@@ -272,21 +269,21 @@ NAME: Add-DeviceConfigurationPolicyAssignment
         $TargetGroupId
     )
 
-    $graphApiVersion = "Beta"
+    $graphApiVersion = 'Beta'
     $Resource = "deviceManagement/deviceManagementScripts/$ScriptId/assign"
 
     try {
 
         if (!$ScriptId) {
 
-            write-host "No Script Policy Id specified, specify a valid Script Policy Id" -f Red
+            Write-Host 'No Script Policy Id specified, specify a valid Script Policy Id' -f Red
             break
 
         }
 
         if (!$TargetGroupId) {
 
-            write-host "No Target Group Id specified, specify a valid Target Group Id" -f Red
+            Write-Host 'No Target Group Id specified, specify a valid Target Group Id' -f Red
             break
 
         }
@@ -304,7 +301,7 @@ NAME: Add-DeviceConfigurationPolicyAssignment
 "@
 
         $uri = "https://graph.microsoft.com/$graphApiVersion/$Resource"
-        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType "application/json"
+        Invoke-RestMethod -Uri $uri -Headers $authToken -Method Post -Body $JSON -ContentType 'application/json'
 
     }
 
@@ -315,10 +312,10 @@ NAME: Add-DeviceConfigurationPolicyAssignment
         $reader = New-Object System.IO.StreamReader($errorResponse)
         $reader.BaseStream.Position = 0
         $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
+        $responseBody = $reader.ReadToEnd()
         Write-Host "Response content:`n$responseBody" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-        write-host
+        Write-Host
         break
 
     }
@@ -340,7 +337,7 @@ Returns all users registered with Azure AD
 NAME: Get-AADGroup
 #>
 
-    [cmdletbinding()]
+    [CmdletBinding()]
 
     param
     (
@@ -350,8 +347,8 @@ NAME: Get-AADGroup
     )
 
     # Defining Variables
-    $graphApiVersion = "v1.0"
-    $Group_resource = "groups"
+    $graphApiVersion = 'v1.0'
+    $Group_resource = 'groups'
 
     try {
 
@@ -362,7 +359,7 @@ NAME: Get-AADGroup
 
         }
 
-        elseif ($GroupName -eq "" -or $GroupName -eq $null) {
+        elseif ([string]::IsNullOrWhiteSpace($GroupName)) {
 
             $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)"
             (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
@@ -388,7 +385,7 @@ NAME: Get-AADGroup
                     $GID = $Group.id
 
                     $Group.displayName
-                    write-host
+                    Write-Host
 
                     $uri = "https://graph.microsoft.com/$graphApiVersion/$($Group_resource)/$GID/Members"
                     (Invoke-RestMethod -Uri $uri -Headers $authToken -Method Get).Value
@@ -406,10 +403,10 @@ NAME: Get-AADGroup
         $reader = New-Object System.IO.StreamReader($errorResponse)
         $reader.BaseStream.Position = 0
         $reader.DiscardBufferedData()
-        $responseBody = $reader.ReadToEnd();
+        $responseBody = $reader.ReadToEnd()
         Write-Host "Response content:`n$responseBody" -f Red
         Write-Error "Request to $Uri failed with HTTP Status $($ex.Response.StatusCode) $($ex.Response.StatusDescription)"
-        write-host
+        Write-Host
         break
 
     }
@@ -421,7 +418,7 @@ NAME: Get-AADGroup
 
 #region Authentication
 
-write-host
+Write-Host
 
 # Checking if authToken exists before running authentication
 if ($global:authToken) {
@@ -434,14 +431,14 @@ if ($global:authToken) {
 
     if ($TokenExpires -le 0) {
 
-        write-host "Authentication Token expired" $TokenExpires "minutes ago" -ForegroundColor Yellow
-        write-host
+        Write-Host 'Authentication Token expired' $TokenExpires 'minutes ago' -ForegroundColor Yellow
+        Write-Host
 
         # Defining User Principal Name if not present
 
-        if ($User -eq $null -or $User -eq "") {
+        if ([string]::IsNullOrWhiteSpace($User)) {
 
-            $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
+            $User = Read-Host -Prompt 'Please specify your user principal name for Azure Authentication'
             Write-Host
 
         }
@@ -455,9 +452,9 @@ if ($global:authToken) {
 
 else {
 
-    if ($User -eq $null -or $User -eq "") {
+    if ([string]::IsNullOrWhiteSpace($User)) {
 
-        $User = Read-Host -Prompt "Please specify your user principal name for Azure Authentication"
+        $User = Read-Host -Prompt 'Please specify your user principal name for Azure Authentication'
         Write-Host
 
     }
@@ -474,12 +471,12 @@ else {
 # Setting application AAD Group to assign PowerShell scripts
 
 #$AADGroup = Read-Host -Prompt "Enter the Azure AD Group name where PowerShell scripts will be assigned"
-$AADGroup = "Privileged Workstations"
+$AADGroup = 'Privileged Workstations'
 
 
 $TargetGroupId = (Get-AADGroup -GroupName "$AADGroup").id
 
-if ($TargetGroupId -eq $null -or $TargetGroupId -eq "") {
+if ([string]::IsNullOrWhiteSpace($TargetGroupId)) {
 
     Write-Host "AAD Group - '$AADGroup' doesn't exist, please specify a valid AAD Group..." -ForegroundColor Red
     Write-Host
@@ -489,13 +486,13 @@ if ($TargetGroupId -eq $null -or $TargetGroupId -eq "") {
 
 ####################################################
 
-Write-Host "Adding Device Configuration Script from " $ImportPath -ForegroundColor Green
+Write-Host 'Adding Device Configuration Script from ' $ImportPath -ForegroundColor Green
 
-$Create_Local_Script = Add-DeviceManagementScript -File $ImportPath -Description "PAW Device Config script"
+$Create_Local_Script = Add-DeviceManagementScript -File $ImportPath -Description 'PAW Device Config script'
 
-Write-Host "Device Management Script created as" $Create_Local_Script.id
-write-host
-write-host "Assigning Device Management Script to AAD Group '$AADGroup'" -f Cyan
+Write-Host 'Device Management Script created as' $Create_Local_Script.id
+Write-Host
+Write-Host "Assigning Device Management Script to AAD Group '$AADGroup'" -f Cyan
 
 $Assign_Local_Script = Add-DeviceManagementScriptAssignment -ScriptId $Create_Local_Script.id -TargetGroupId $TargetGroupId
 

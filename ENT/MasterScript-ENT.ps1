@@ -23,7 +23,7 @@ Authenticates you with the Graph API interface
 NAME: Test-MgAuth
 #>
 
-    [cmdletbinding()]
+    [CmdletBinding()]
 
     param
     (
@@ -45,7 +45,7 @@ NAME: Test-MgAuth
         write-host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
         write-host "Script can't continue..." -f Red
         write-host
-        
+
     }
 
     $scopes = @()
@@ -53,19 +53,19 @@ NAME: Test-MgAuth
     #########################################
     # Directory related scopes              #
     #########################################
-    $scopes += @("Device.Read.All", 
-        "User.Read.All", 
-        "GroupMember.ReadWrite.All", 
-        "Group.ReadWrite.All", 
+    $scopes += @("Device.Read.All",
+        "User.Read.All",
+        "GroupMember.ReadWrite.All",
+        "Group.ReadWrite.All",
         "Directory.ReadWrite.All")
 
     #########################################
     # Device Management scopes              #
     #########################################
-    $scopes += @("DeviceManagementConfiguration.ReadWrite.All", 
-        "DeviceManagementServiceConfig.ReadWrite.All", 
-        "DeviceManagementRBAC.ReadWrite.All", 
-        "DeviceManagementManagedDevices.ReadWrite.All", 
+    $scopes += @("DeviceManagementConfiguration.ReadWrite.All",
+        "DeviceManagementServiceConfig.ReadWrite.All",
+        "DeviceManagementRBAC.ReadWrite.All",
+        "DeviceManagementManagedDevices.ReadWrite.All",
         "DeviceManagementApps.ReadWrite.All")
 
 
@@ -105,17 +105,17 @@ NAME: Test-MgAuth
     }
 
 }
-    
+
 ####################################################
-    
+
 $User = Read-Host -Prompt "Please specify your user principal name for Microsoft Authentication"
-    
+
 
 Test-MgAuth -user $user
 
 ####################################################
-    
-    
+
+
 write-host "Adding Device Configuration Profiles"
 
 . $ScriptDir/Import-ENT-DeviceConfiguration.ps1

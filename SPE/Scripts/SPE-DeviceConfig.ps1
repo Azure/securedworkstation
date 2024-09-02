@@ -19,17 +19,17 @@ Function Start-Log {
             [Parameter(HelpMessage = 'Deletes existing file if used with the -DeleteExistingFile switch')]
             [switch]$DeleteExistingFile
         )
-		
+
         Try {
             If (!(Test-Path $FilePath)) {
                 ## Create the log file
                 New-Item $FilePath -Type File -Force | Out-Null
             }
-            
+
             If ($DeleteExistingFile) {
                 Remove-Item $FilePath -Force
             }
-			
+
             ## Set the global variable to be used as the FilePath for all subsequent Write-Log
             ## calls in this session
             $script:ScriptLogFilePath = $FilePath
@@ -47,7 +47,7 @@ Function Start-Log {
         param (
             [Parameter(Mandatory = $true)]
             [string]$Message,
-			
+
             [Parameter()]
             [ValidateSet(1, 2, 3)]
             [int]$LogLevel = 1,
@@ -81,7 +81,7 @@ NAME: Is-VM
 
         [CmdletBinding()]
         Param ()
-    
+
         Begin {
             Write-Log -Message "$($MyInvocation.InvocationName) function..."
         }
@@ -96,7 +96,7 @@ NAME: Is-VM
                     $True
                 }
                 else {
-                    Write-Log -Message "Virtual string not found"          
+                    Write-Log -Message "Virtual string not found"
                     $False
                 }
             }
@@ -123,7 +123,7 @@ NAME: Is-VM
         }
         Else {
             Write-Host "Machine is a physical device"
-       
+
             #Enable Hibernate
             Write-Log -Message "Enabling Hibernation"
             $command = "C:\Windows\System32\PowerCfg.exe"
@@ -170,7 +170,7 @@ NAME: Is-VM
                 #Write-Warning "$($env:computername.ToUpper()) : $($_.Exception.message)"
                 #Exit
             }
-        
+
             $command = "C:\Windows\System32\PowerCfg.exe"
             $args = "/Change standby-timeout-ac 60"
             $workDir = "C:\Windows\System32"
@@ -202,7 +202,7 @@ NAME: Is-VM
             }
             Catch {
                 Write-Log -Message "Error changing registry: $($_.Exception.message)"
-                Write-Warning "Error: $($_.Exception.message)"        
+                Write-Warning "Error: $($_.Exception.message)"
                 Exit
             }
             Finally {
@@ -220,27 +220,22 @@ NAME: Is-VM
         }
         Catch {
             Write-Log -Message "Error changing AppLocker DLL rule registry key: $($_.Exception.message)"
-            Write-Warning "Error: $($_.Exception.message)"        
+            Write-Warning "Error: $($_.Exception.message)"
             Exit
         }
         Finally {
            Write-Log -Message "Finished changing AppLocker DLL rule registry key"
         }
         #endregion Configure AppLocker DLL rule registry key
-        
+
         #region Configure additional Defender for Endpoint security recommendations that cannot be set in Configuration Profiles
         #Handle registry changes
-        
-        
-        Write-Log -Message "Configuring additional Defender for Endpoint security recommendations that cannot be set in Configuration Profiles"
-        # Require users to elevate when setting a network's location - prevent changing from Public to Private firewall profile
-        New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections" -Name NC_StdDomainUserSetLocation -Value 1 -PropertyType DWORD -Force
-        Write-Log -Message "Require users to elevate when setting a network's location - prevent changing from Public to Private firewall profile registry update successfully applied"
-        # Prevent saving of network credentials 
+
+        # Prevent saving of network credentials
         New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name DisableDomainCreds -Value 1 -PropertyType DWORD -Force
         Write-Log -Message "Prevent saving of network credentials registry update successfully applied"
         # Prevent changing proxy config
-                
+
         #region Disable Network Location Wizard - prevents users from setting network location as Private and therefore increasing the attack surface exposed in Windows Firewall
         #region Disable Network Location Wizard
         #Handle registry changes
@@ -260,7 +255,7 @@ NAME: Is-VM
         }
         Catch {
             Write-Log -Message "Error changing registry: $($_.Exception.message)"
-            Write-Warning "Error: $($_.Exception.message)"        
+            Write-Warning "Error: $($_.Exception.message)"
             Exit
         }
         Finally {
@@ -310,7 +305,7 @@ NAME: Is-VM
         }
         #endregion Remove WindowsMediaPlayer
 
-    
+
 		#region RegistryChanges - Set W32Time Parameter Type to NTP
         #Handle registry changes
         $registryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\W32Time\Parameters"
@@ -332,7 +327,7 @@ NAME: Is-VM
         }
         Catch {
             Write-Log -Message "Error changing registry: $($_.Exception.message)"
-            Write-Warning "Error: $($_.Exception.message)"        
+            Write-Warning "Error: $($_.Exception.message)"
             Exit
         }
         Finally {
@@ -361,14 +356,14 @@ NAME: Is-VM
         }
         Catch {
             Write-Log -Message "Error changing registry: $($_.Exception.message)"
-            Write-Warning "Error: $($_.Exception.message)"        
+            Write-Warning "Error: $($_.Exception.message)"
             Exit
         }
         Finally {
             Write-Log -Message "Set Auto Time Sync Service to Automatic start"
         }
         #endregion RegistryChanges - Set Auto Time Sync Service to Automatic start
-       
+
 
         <#region Remove Internet Explorer 11
         try {

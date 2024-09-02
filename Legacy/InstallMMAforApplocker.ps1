@@ -1,8 +1,8 @@
 ﻿<##################################################################################################
 #
 .SYNOPSIS
-This script downloads, and installs the MMA agent (64 bit AMD processor). 
-The MMA agent provide the required monitoring of a device APPLOCKER instance. 
+This script downloads, and installs the MMA agent (64 bit AMD processor).
+The MMA agent provide the required monitoring of a device APPLOCKER instance.
 This deployment is sample code to be used with the guidance at aka.ms/securedworkstation, using the Secure workstation profile.
 
 The Secure workstation profile once loaded in Intune will enable all targeted devices to beging auditing all
@@ -19,8 +19,8 @@ generate large traffic to your Azure instance of your Log Analytics workspace. U
 	Revised:     Frank Simorjay
     Created:     05-09-2019
 	Revised:     05-09-2019
-    Version:     1.0 
-    
+    Version:     1.0
+
 #>
 ###################################################################################################
 <#
@@ -33,7 +33,7 @@ See LICENSE in the project root for license information.
 
 ####################################################
 
-# Set the parameters for your installation. Note this sample targets the generic AMD64 bit MMA client. 
+# Set the parameters for your installation. Note this sample targets the generic AMD64 bit MMA client.
 $FileName = "MMASetup-AMD64.exe"
 $MMAFolder = 'C:\Source' #sample downloads the bits to this folder
 $MMALogsFolder = 'C:\MMAInstallLogs' #instal the bits and start logging activity of the installation effort - good for debugging
@@ -54,7 +54,7 @@ Start-Transcript -Path $MMALogsFile -Append
 SC.EXE config AppIdSvc start= auto
 Write-Host "Configured AppIdSvc to auto start."
 
-try 
+try
 {
 	# Check to see if MMA is already installed.
 	# This could happen if the customer already uses MMA or if we deployed this previously
@@ -65,7 +65,7 @@ try
 	$mma.AddCloudWorkspace($WorkSpaceID, $WorkSpaceKey)
 	Exit 0
 }
-catch 
+catch
 {
 	if ($MMAInstalled)
 	{
@@ -80,8 +80,8 @@ catch
 # Check if folder exists, if not, create it
  if (Test-Path $MMAFolder){
  Write-Host "The folder $MMAFolder already exists."
- } 
- else 
+ }
+ else
  {
  Write-Host "The folder $MMAFolder does not exist, creating..." -NoNewline
  New-Item $MMAFolder -type Directory | Out-Null
@@ -102,7 +102,7 @@ Set-Location $MMAFolder
  Invoke-WebRequest -Uri $URl -OutFile $MMAFile | Out-Null
  Write-Host "done!" -ForegroundColor Green
  }
- 
+
 # Install the agent
 Write-Host "Installing Microsoft Monitoring Agent.." -nonewline
 $ArgumentList = '/C:"setup.exe /qn ADD_OPINSIGHTS_WORKSPACE=1 '+  "OPINSIGHTS_WORKSPACE_ID=$WorkspaceID " + "OPINSIGHTS_WORKSPACE_KEY=$WorkSpaceKey " +'AcceptEndUserLicenseAgreement=1"'
@@ -115,8 +115,8 @@ Set-Location -Path "C:\"
 # Remove the folder with the agent
  if (-not (Test-Path $MMAFolder)) {
  Write-Host "The folder $MMAFolder does not exist."
- } 
- else 
+ }
+ else
  {
  Write-Host "Removing the folder $MMAFolder ..." -NoNewline
  Remove-Item $MMAFolder -Force -Recurse | Out-Null

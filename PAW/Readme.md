@@ -1,6 +1,6 @@
 # Privileged Profile configuration
 
-The scripts for configuring the Privileged security baseline are located in this folder. 
+The scripts for configuring the Privileged security baseline are located in this folder.
 Before the scripts can be run install Azure AD powershell module on your device
 
 ```powershell
@@ -12,24 +12,22 @@ Set-ExecutionPolicy remotesigned
 ```
 
 [**MasterScript_PAW.PS1**](MasterScript-PAW.ps1) - This script is used to import the Compliance policies, Configuration profiles used to apply the Privileged Profile settings
-   
+
    To import the Privileged Profile configuration settings into your tenant
    Open powershell console
-   Navigate to PAW folder in Repo 
+   Navigate to PAW folder in Repo
    ```powershell
    .\MasterScript-PAW.ps1
    ```
-    
+
 PAWer **username** and **password** of an account that has Intune Administrator (preferred) or Global Admin privilege
 
 Wait for the import process to complete.
 
 The MasterScript_PAW.ps1 file calls the following scripts to import the Compliance Policies, Configuration Profiles
 
-
-
 [**Import-PAW-DeviceCompliancePolicies.ps1**](Import-PAW-DeviceCompliancePolicies.ps1) - This scripts imports the three device compliance policies for the Privileged profile. Three policies are used to ensure that Conditional Access does not prevent a user from being able to access resources. Refer to [Windows 10 and later settings to mark devices as compliant or not compliant using Intune](https://docs.microsoft.com/en-us/mem/intune/protect/compliance-policy-create-windows)
-   
+
    1. [Privileged Compliance ATP](JSON/DeviceCompliance/PAW-Compliance-ATP.json) policy is used to feed the Threat Intelligence data from Microsoft Defender for Endpoint into the devices compliance state so its signals can be used as part of the Conditional Access evaluation process.
 
    2. [Privileged Compliance Delayed](JSON/DeviceCompliance/PAW-Compliance-Delayed.json) policy applies a more complete set of compliance settings to the device but its application is delayed by 24 hours.  this is because the device health attestation that is required to assess policies like BitLocker and Secure Boot is only calculated once a device has rebooted and then might take a number of hours to process whether the device is compliant or not.
@@ -73,8 +71,6 @@ The MasterScript_PAW.ps1 file calls the following scripts to import the Complian
 > [!NOTE]
 > There are two rules defined for each rule in the Microsoft Defender Firewall configuration. To restrict the inbound and outbound rules to Windows Services, e.g. DNS Client, both the service name, DNSCache, and the executable path, C:\Windows\System32\svchost.exe, need to be defined as separate rule rather than a single rule that is possible using Group Policy.
 
-
 [**Import-PAW-DeviceConfigurationADMX.ps1**](JSON/DeviceConfigurationADMX/Privileged-Edge%20Version%2085%20-%20Computer.json) this script is used to import the Device Configuration ADMX Template profile that configures Microsoft Edge security settings.
 
 1.  [Privileged-Edge Version 85 - Computer](JSON/DeviceConfigurationADMX/Privileged-Edge%20Version%2085%20-%20Computer.json) applies administrative policies that control features in Microsoft Edge version 77 and later, refer to [Microsoft Edge - Policies](https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-policies) or more details of the settings applied using the profile.
-

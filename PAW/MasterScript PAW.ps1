@@ -23,7 +23,7 @@ Authenticates you with the Graph API interface
 NAME: Test-MgAuth
 #>
 
-    [cmdletbinding()]
+    [CmdletBinding()]
 
     param
     (
@@ -31,21 +31,20 @@ NAME: Test-MgAuth
         $User
     )
 
-    $userUpn = New-Object "System.Net.Mail.MailAddress" -ArgumentList $User
+    $userUpn = New-Object 'System.Net.Mail.MailAddress' -ArgumentList $User
 
     $tenant = $userUpn.Host
 
-    Write-Host "Checking for Microsoft Graph module..."
+    Write-Host 'Checking for Microsoft Graph module...'
 
-    $MgModule = Get-Module -Name "Microsoft.Graph" -ListAvailable
+    $MgModule = Get-Module -Name 'Microsoft.Graph' -ListAvailable
 
     if ($null -eq $MgModule) {
-        write-host
-        write-host "Microsoft Graph Powershell module not installed..." -f Red
-        write-host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
-        write-host "Script can't continue..." -f Red
-        write-host
-        
+        Write-Host
+        Write-Host 'Microsoft Graph Powershell module not installed...' -f Red
+        Write-Host "Install by running 'Install-Module Microsoft.Graph' or 'Install-Module Microsoft.Graph' from an elevated PowerShell prompt" -f Yellow
+        Write-Host "Script can't continue..." -f Red
+        Write-Host
     }
 
     $scopes = @()
@@ -53,21 +52,20 @@ NAME: Test-MgAuth
     #########################################
     # Directory related scopes              #
     #########################################
-    $scopes += @("Device.Read.All", 
-        "User.Read.All", 
-        "GroupMember.ReadWrite.All", 
-        "Group.ReadWrite.All", 
-        "Directory.ReadWrite.All")
+    $scopes += @('Device.Read.All',
+        'User.Read.All',
+        'GroupMember.ReadWrite.All',
+        'Group.ReadWrite.All',
+        'Directory.ReadWrite.All')
 
     #########################################
     # Device Management scopes              #
     #########################################
-    $scopes += @("DeviceManagementConfiguration.ReadWrite.All", 
-        "DeviceManagementServiceConfig.ReadWrite.All", 
-        "DeviceManagementRBAC.ReadWrite.All", 
-        "DeviceManagementManagedDevices.ReadWrite.All", 
-        "DeviceManagementApps.ReadWrite.All")
-
+    $scopes += @('DeviceManagementConfiguration.ReadWrite.All',
+        'DeviceManagementServiceConfig.ReadWrite.All',
+        'DeviceManagementRBAC.ReadWrite.All',
+        'DeviceManagementManagedDevices.ReadWrite.All',
+        'DeviceManagementApps.ReadWrite.All')
 
     #$clientId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
     #$redirectUri = "urn:ietf:wg:oauth:2.0:oob"
@@ -81,11 +79,11 @@ NAME: Test-MgAuth
         $ctx = Get-MgContext
         $org = Get-MgOrganization
 
-        $domains = $org.VerifiedDomains | select-object -ExpandProperty Name
+        $domains = $org.VerifiedDomains | Select-Object -ExpandProperty Name
         if ($ctx.Account.ToLower() -ne $userUpn.Address.ToLower() -or ($ctx.TenantId -ne $org.Id) -or $domains -notcontains $tenant) {
-            write-host "Unable to verify tenant or account" -f Red
+            Write-Host 'Unable to verify tenant or account' -f Red
             Disconnect-MgGraph
-            throw "Unable to continue due to validation"
+            throw 'Unable to continue due to validation'
         }
 
         # $authHeader = @{
@@ -97,30 +95,27 @@ NAME: Test-MgAuth
         # return $authHeader
     }
     catch {
-        write-host $_.Exception.Message -f Red
-        write-host $_.Exception.ItemName -f Red
-        write-host
+        Write-Host $_.Exception.Message -f Red
+        Write-Host $_.Exception.ItemName -f Red
+        Write-Host
         break
-
     }
-
 }
-    
+
 ####################################################
-    
-    $User = Read-Host -Prompt "Please specify your user principal name for Microsoft Authentication"
-    
 
-    Test-MgAuth -user $user
-    
- ####################################################
-    
-    
- #write-host "Adding App Registrtion"
+$User = Read-Host -Prompt 'Please specify your user principal name for Microsoft Authentication'
 
- #. $ScriptDir/AppRegistration_Create.ps1
- 
- #Start-Sleep -s 5
+
+Test-MgAuth -user $user
+
+####################################################
+
+#write-host "Adding App Registration"
+
+#. $ScriptDir/AppRegistration_Create.ps1
+
+#Start-Sleep -s 5
 
 #write-host "Adding required AAD Groups"
 
@@ -144,19 +139,19 @@ NAME: Test-MgAuth
 
 #Start-Sleep -s 5
 
-write-host "Adding Device Configuration Profiles"
+Write-Host 'Adding Device Configuration Profiles'
 
 . $ScriptDir/Import-PAW-DeviceConfiguration.ps1
 
 #Start-Sleep -s 5
 
-write-host "Adding Device Compliance Policies"
+Write-Host 'Adding Device Compliance Policies'
 
 . $ScriptDir/Import-PAW-DeviceCompliancePolicies.ps1
 
 Start-Sleep -s 5
 
-write-host "Adding Update Rings Policy"
+Write-Host 'Adding Update Rings Policy'
 
 . $ScriptDir/Import-PAW-DeviceConfigurationADMX.ps1
 
@@ -179,6 +174,3 @@ Start-Sleep -s 5
 #. $ScriptDir/DER-Import_PAW.ps1
 
 #Start-Sleep -s 5
-
-
-

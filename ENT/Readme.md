@@ -1,7 +1,6 @@
-
 # Enterprise Profile configuration
 
-The scripts for configuring the Enterprise security baseline are located in this folder. 
+The scripts for configuring the Enterprise security baseline are located in this folder.
 Before the scripts can be run install Azure AD powershell module on your device
 
 ```powershell
@@ -13,24 +12,22 @@ Set-ExecutionPolicy remotesigned
 ```
 
 [**MasterScript_ENT.PS1**](MasterScript-ENT.ps1) - This script is used to import the Compliance policies, Configuration profiles used to apply the Enterprise Profile settings
-   
+
    To import the Enterprise Profile configuration settings into your tenant
-   Open powershell comsole
-   Navigate to ENT folder in Repo 
+   Open powershell console
+   Navigate to ENT folder in Repo
    ```powershell
    .\MasterScript-ENT.ps1
    ```
-    
+
 Enter **username** and **password** of an account that has Intune Administrator (preferred) or Global Admin privilege
 
 Wait for the import process to complete.
 
 The MasterScript_ENT.ps1 file calls the following scripts to import the Compliance Policies, Configuration Profiles
 
-
-
 [**Import-ENT-DeviceCompliancePolicies.ps1**](Import-ENT-DeviceCompliancePolicies.ps1) - This scripts imports the three device compliance policies for the Enterprise profile. Three policies are used to ensure that Conditional Access does not prevent a user from being able to access resources. Refer to [Windows 10 and later settings to mark devices as compliant or not compliant using Intune](https://docs.microsoft.com/en-us/mem/intune/protect/compliance-policy-create-windows)
-   
+
    1. [Enterprise Compliance ATP](JSON/DeviceCompliance/ENT-Compliance-ATP.json) policy is used to feed the Threat Intelligence data from Microsoft Defender for Endpoint into the devices compliance state so its signals can be used as part of the Conditional Access evaluation process.
 
    2. [Enterprise Compliance Delayed](JSON/DeviceCompliance/ENT-Compliance-Delayed.json) policy applies a more complete set of compliance settings to the device but its application is delayed by 24 hours.  this is because the device health attestation that is required to assess policies like BitLocker and Secure Boot is only calculated once a device has rebooted and then might take a number of hours to process whether the device is compliant or not.
