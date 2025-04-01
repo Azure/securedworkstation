@@ -11,7 +11,7 @@ and allow scripts to run on your device;
 Set-ExecutionPolicy remotesigned
 ```
 
-[**MasterScript_PAW.PS1**](MasterScript-PAW.ps1) - This script is used to import the Compliance policies, Configuration profiles used to apply the Privileged Profile settings
+[**MasterScript_PAW.PS1**](https://github.com/Azure/securedworkstation/blob/master/PAW/MasterScript%20PAW.ps1) - This script is used to import the Compliance policies, Configuration profiles used to apply the Privileged Profile settings
    
    To import the Privileged Profile configuration settings into your tenant
    Open powershell console
